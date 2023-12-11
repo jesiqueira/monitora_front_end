@@ -40,3 +40,7 @@ nav {
   background: url('../Assets/login.svg') no-repeat center center;
   margin-right: 1rem;
 }
+.nome{
+  color: white;
+  font-size: 2.5rem;
+}

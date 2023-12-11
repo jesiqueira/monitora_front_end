@@ -2,21 +2,23 @@ import React from 'react'
 import Input from '../Forms/Input'
 import Button from '../Forms/Button'
 import useForm from '../../Hooks/useForm'
-import { getUsuarios } from '../../services/api'
+import { UserContext } from '../../Contexts/UserContext'
 // import { Link } from 'react-router-dom'
 
 const LoginForm = () => {
-  const login = useForm('login')
+  const login = useForm('login') //Validacao do formulário se campos estão de acordo com a validação
   const password = useForm()
-  // console.log(password.value)
-  const user = async () => {
-    const response = await getUsuarios()
-    console.log(response)
-  }
+
+  const { userLogin } = React.useContext(UserContext)
+
   function handleSubmit(envet) {
     envet.preventDefault()
-    user()
+
+    if (login.validate() && password.validate()) {
+      userLogin(login.value, password.value)
+    }
   }
+
   return (
     <div>
       {/* <Link to="/">Monitora</Link> */}
