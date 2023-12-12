@@ -8,6 +8,8 @@ import { UserStorage } from './Contexts/UserContext'
 import Colaborador from './Components/Colaborador/Colaborador'
 import Descarte from './Components/Descarte/Descarte'
 import Administrador from './Components/Administrador/Administrador'
+import ProtectedRoute from './Components/Helper/ProtectedRoute'
+import ProtectedRouteAdmin from './Components/Helper/ProtectedRouteAdmin'
 
 function App() {
   return (
@@ -17,10 +19,34 @@ function App() {
           <Header />
           <Routes>
             <Route exact path="/" element={<Home />}></Route>
-            <Route exact path="/colaborador/*" element={<Colaborador />}></Route>
-            <Route exact path="/descarte/*" element={<Descarte />}></Route>
-            <Route exact path="/admin/*" element={<Administrador />}></Route>
-            <Route exact path="/login/" element={<Login />}></Route>
+            <Route
+              exact
+              path="colaborador/*"
+              element={
+                <ProtectedRoute>
+                  <Colaborador />
+                </ProtectedRoute>
+              }
+            ></Route>
+            <Route
+              exact
+              path="descarte/*"
+              element={
+                <ProtectedRoute>
+                  <Descarte />
+                </ProtectedRoute>
+              }
+            ></Route>
+            <Route
+              exact
+              path="admin/*"
+              element={
+                <ProtectedRouteAdmin>
+                  <Administrador />
+                </ProtectedRouteAdmin>
+              }
+            ></Route>
+            <Route exact path="login/*" element={<Login />}></Route>
           </Routes>
           <Footer />
         </UserStorage>

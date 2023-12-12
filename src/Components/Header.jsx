@@ -6,14 +6,14 @@ import { ReactComponent as Detalhe } from '../Assets/detalheAtivo.svg'
 import { UserContext } from '../Contexts/UserContext'
 
 const Header = () => {
-  const { user, userLogout, menusair, setMenusair, admin, setAdmin } = React.useContext(UserContext)
+  const { user, userLogout, menusair, setMenusair, menuadmin, setMenuadmin } = React.useContext(UserContext)
   // console.log(user);
 
   const toggleMenu = () => {
     setMenusair(!menusair)
   }
   const toggleMenuAdmin = () => {
-    setAdmin(!admin)
+    setMenuadmin(!menuadmin)
   }
   return (
     <>
@@ -29,13 +29,13 @@ const Header = () => {
                 <Link to="/colaborador">Colaborador</Link>
                 <Link to="/descarte">Descarte</Link>
                 <Link to="">Equipamento</Link>
-                {!user.is_admin ? (
+                {user.is_admin ? (
                   <div className={styles.dropdown_menu}>
                     <Link to="#" onClick={toggleMenuAdmin}>
                       Admin
                       <Detalhe />
                     </Link>
-                    {admin && (
+                    {menuadmin && (
                       <div className={styles.submenu}>
                         <ul>
                           <li>
@@ -54,7 +54,7 @@ const Header = () => {
               </div>
               <div className={styles.dropdown_menu}>
                 <Link to="#" onClick={toggleMenu}>
-                  {user.nome}
+                  {user.login}
                   <Detalhe />
                 </Link>
                 {menusair && (
