@@ -40,7 +40,62 @@ nav {
   background: url('../Assets/login.svg') no-repeat center center;
   margin-right: 1rem;
 }
-.nome{
-  color: white;
-  font-size: 2.5rem;
+
+.menu{
+  display: flex;
+  align-items: center;
 }
+
+.link{
+  margin-right: 3rem;
+}
+.link a{
+  list-style: none;
+  color: white;
+  margin: 0 6px;
+  padding: 10px;
+  font-size: 1.5rem;
+}
+
+
+
+.dropdown_menu {
+  position: relative;
+  font-size: 1.5rem;
+}
+
+.dropdown_menu a{
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.dropdown_menu svg{
+  margin-left: 1rem;
+}
+.submenu{
+  min-width: 8rem;
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #333;
+  border: 1px solid #555;
+  border-radius: 5px;
+}
+
+.submenu ul{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.submenu li{
+  padding: .10rem;
+}
+
+.submenu li:hover{
+  background-color: #555;
+}
+
