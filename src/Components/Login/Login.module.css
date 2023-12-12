@@ -1,0 +1,16 @@
+.login {
+  /* background: #6d3d3d; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* max-width: 50rem;
+  margin: 0 auto; */
+  height: calc(100vh - 6rem);
+  /* align-content: center; */
+}
+
+.login::before {
+  display: block;
+  content: '';
+  background: url('../../Assets/cadeado.svg') no-repeat center center;
+  background-size: cover;
+}

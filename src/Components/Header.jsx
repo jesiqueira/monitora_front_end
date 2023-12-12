@@ -5,7 +5,8 @@ import { ReactComponent as Logo } from '../Assets/logo.svg'
 import { UserContext } from '../Contexts/UserContext'
 
 const Header = () => {
-  const { user } = React.useContext(UserContext)
+  const { user, userLogout } = React.useContext(UserContext)
+  // console.log(user);
   return (
     <header className={styles.header}>
       <nav className={`${styles.nav}`}>
@@ -13,7 +14,10 @@ const Header = () => {
           <Logo /> Monitora
         </Link>
         {user ? (
-          <span className={styles.nome}>{user.nome}</span>
+          <span className={styles.nome}>
+            {user.nome}
+            <button onClick={userLogout}>Sair</button>
+          </span>
         ) : (
           <Link className={styles.login} to="/login">
             Login

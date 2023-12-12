@@ -9,7 +9,7 @@ const LoginForm = () => {
   const login = useForm('login') //Validacao do formulário se campos estão de acordo com a validação
   const password = useForm()
 
-  const { userLogin } = React.useContext(UserContext)
+  const { userLogin, error, loading } = React.useContext(UserContext)
 
   function handleSubmit(envet) {
     envet.preventDefault()
@@ -26,7 +26,10 @@ const LoginForm = () => {
         <form onSubmit={handleSubmit}>
           <Input label="Login" type="text" name="login" {...login} />
           <Input label="Senha" type="password" name="password" {...password} />
-          <Button>Entrar</Button>
+
+          {loading ? <Button disabled>Carregando....</Button> : <Button>Entrar</Button>}
+
+          {error && <p>{error}</p>}
         </form>
       </section>
     </div>
