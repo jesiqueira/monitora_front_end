@@ -41,15 +41,17 @@ nav {
   margin-right: 1rem;
 }
 
-.menu{
+.menu {
   display: flex;
   align-items: center;
 }
 
-.link{
+.link {
+  display: flex;
+  align-items: center;
   margin-right: 3rem;
 }
-.link a{
+.link a {
   list-style: none;
   color: white;
   margin: 0 6px;
@@ -57,14 +59,12 @@ nav {
   font-size: 1.5rem;
 }
 
-
-
 .dropdown_menu {
   position: relative;
   font-size: 1.5rem;
 }
 
-.dropdown_menu a{
+.dropdown_menu a {
   display: block;
   color: white;
   text-decoration: none;
@@ -72,10 +72,10 @@ nav {
   cursor: pointer;
 }
 
-.dropdown_menu svg{
+.dropdown_menu svg {
   margin-left: 1rem;
 }
-.submenu{
+.submenu {
   min-width: 8rem;
   display: block;
   position: absolute;
@@ -86,16 +86,15 @@ nav {
   border-radius: 5px;
 }
 
-.submenu ul{
+.submenu ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
-.submenu li{
-  padding: .10rem;
+.submenu li {
+  padding: 0.1rem;
 }
 
-.submenu li:hover{
+.submenu li:hover {
   background-color: #555;
 }
-

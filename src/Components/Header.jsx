@@ -6,11 +6,14 @@ import { ReactComponent as Detalhe } from '../Assets/detalheAtivo.svg'
 import { UserContext } from '../Contexts/UserContext'
 
 const Header = () => {
-  const { user, userLogout, menusair, setMenusair } = React.useContext(UserContext)
+  const { user, userLogout, menusair, setMenusair, admin, setAdmin } = React.useContext(UserContext)
   // console.log(user);
 
   const toggleMenu = () => {
     setMenusair(!menusair)
+  }
+  const toggleMenuAdmin = () => {
+    setAdmin(!admin)
   }
   return (
     <>
@@ -19,17 +22,39 @@ const Header = () => {
           <Link className={styles.logo} to="/" aria-label="Logo - Home">
             <Logo /> Monitora
           </Link>
-          <div className={styles.menu}>
-            <div className={styles.link}>
-              <Link to="">Colaborador</Link>
-              <Link to="">Descarte</Link>
-              <Link to="">Equipamento</Link>
-              <Link to="">Admin</Link>
-            </div>
-            {user ? (
+
+          {user ? (
+            <div className={styles.menu}>
+              <div className={styles.link}>
+                <Link to="/colaborador">Colaborador</Link>
+                <Link to="/descarte">Descarte</Link>
+                <Link to="">Equipamento</Link>
+                {!user.is_admin ? (
+                  <div className={styles.dropdown_menu}>
+                    <Link to="#" onClick={toggleMenuAdmin}>
+                      Admin
+                      <Detalhe />
+                    </Link>
+                    {admin && (
+                      <div className={styles.submenu}>
+                        <ul>
+                          <li>
+                            <Link to="#">Site</Link>
+                          </li>
+                          <li>
+                            <Link to="/admin">Usuário</Link>
+                          </li>
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  ''
+                )}
+              </div>
               <div className={styles.dropdown_menu}>
                 <Link to="#" onClick={toggleMenu}>
-                  Edmar
+                  {user.nome}
                   <Detalhe />
                 </Link>
                 {menusair && (
@@ -44,12 +69,12 @@ const Header = () => {
                   </div>
                 )}
               </div>
-            ) : (
-              <Link className={styles.login} to="/login">
-                Login
-              </Link>
-            )}
-          </div>
+            </div>
+          ) : (
+            <Link className={styles.login} to="/login">
+              Login
+            </Link>
+          )}
         </nav>
       </header>
     </>

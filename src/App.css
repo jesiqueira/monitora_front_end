@@ -44,7 +44,7 @@ a {
 }
 
 .container {
-  max-width: 50rem; /*50 * 16 = 800px*/
+  max-width: 82rem; /*82 * 16 = 1312px*/
   padding: 0 1rem;
   margin: 0 auto;
 }

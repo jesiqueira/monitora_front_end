@@ -6,6 +6,7 @@ export const UserContext = React.createContext()
 
 export const UserStorage = ({ children }) => {
   const [menusair, setMenusair] = React.useState(false)
+  const [admin, setAdmin] = React.useState(false)
   const [user, setUser] = React.useState(null)
   const [logado, setLogado] = React.useState(null)
   const [loading, setLoading] = React.useState(false)
@@ -84,5 +85,9 @@ export const UserStorage = ({ children }) => {
     autoLogin()
   }, [userLogout])
 
-  return <UserContext.Provider value={{ userLogin, userLogout, user, error, loading, logado, menusair, setMenusair }}>{children}</UserContext.Provider>
+  return (
+    <UserContext.Provider value={{ userLogin, userLogout, user, error, loading, logado, menusair, setMenusair, admin, setAdmin }}>
+      {children}
+    </UserContext.Provider>
+  )
 }

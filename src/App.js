@@ -5,6 +5,9 @@ import Footer from './Components/Footer'
 import Home from './Components/Home'
 import Login from './Components/Login/Login'
 import { UserStorage } from './Contexts/UserContext'
+import Colaborador from './Components/Colaborador/Colaborador'
+import Descarte from './Components/Descarte/Descarte'
+import Administrador from './Components/Administrador/Administrador'
 
 function App() {
   return (
@@ -14,7 +17,10 @@ function App() {
           <Header />
           <Routes>
             <Route exact path="/" element={<Home />}></Route>
-            <Route exact path="/login/*" element={<Login />}></Route>
+            <Route exact path="/colaborador/*" element={<Colaborador />}></Route>
+            <Route exact path="/descarte/*" element={<Descarte />}></Route>
+            <Route exact path="/admin/*" element={<Administrador />}></Route>
+            <Route exact path="/login/" element={<Login />}></Route>
           </Routes>
           <Footer />
         </UserStorage>
