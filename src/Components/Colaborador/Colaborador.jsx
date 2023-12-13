@@ -6,10 +6,17 @@ import { ReactComponent as Pdf } from '../../Assets/pdf.svg'
 import { ReactComponent as Excell } from '../../Assets/excell.svg'
 import { ReactComponent as Detalhe1 } from '../../Assets/colDetalhe.svg'
 import { ReactComponent as AddColaborador } from '../../Assets/addcolaborador.svg'
+import { UserContext } from '../../Contexts/UserContext'
+import FecharMenu from '../Helper/FecharMenu'
 
 const Colaborador = () => {
+  const { setMenuadmin } = React.useContext(UserContext)
+  const menuClose = [setMenuadmin]
+
+
   return (
     <>
+      <FecharMenu menuToClose={menuClose} />
       <Head title="Colaboradores" description="Páginas com todos os colaboradores das empresa." />
 
       <section className={`${styles.menu} container`}>
