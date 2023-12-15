@@ -1,28 +1,88 @@
 .header {
-  position: fixed;
-  width: 100%;
-  z-index: 100;
-  background: #0d0d0d;
-  top: 0px;
-}
-
-nav {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  background: linear-gradient(356deg, #070707 2.85%, #5a5a5a 97.06%);
+  padding: 15px;
   align-items: center;
-  height: 6rem;
-  margin: 0 40px 0 40px;
+  z-index: 10;
 }
 
 .logo {
-  padding: 0.5rem 0;
   display: flex;
   align-items: center;
+  max-width: 380px;
+}
+
+.logo > h1 {
   font-size: 4rem;
   color: white;
+  width: 92px;
 }
-.logo svg {
-  margin-right: 1rem;
+
+.logo > svg {
+  margin-right: 10px;
+}
+
+.navegacao {
+  display: flex;
+  flex-wrap: wrap;
+}
+.navegacao a {
+  display: block;
+  padding: 10px;
+  color: white;
+  font-size: 1.125em;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  transition: 0.1s;
+}
+
+.navegacao a:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.links {
+  display: flex;
+}
+
+.links a + a {
+  margin-left: 30px;
+}
+
+.dropdown_menu {
+  margin-left: 30px;
+  position: relative;
+}
+
+.dropdown_menu svg {
+  margin-left: 1rem;
+}
+
+.header a.active > svg > * {
+  stroke: red;
+}
+
+.header .active {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.submenu {
+  background: #5a5a5a;
+  position: absolute;
+  align-items: start;
+  padding: 10px;
+  border-radius: 5px;
+}
+.submenu ul {
+  margin: 0;
+  padding: 0;
+}
+.submenu a {
+  background: rgba(0, 0, 0, 0.1);
+  display: block;
+}
+.submenu li + li {
+  margin-top: 10px;
 }
 
 .login {
@@ -39,62 +99,4 @@ nav {
   height: 36px;
   background: url('../Assets/login.svg') no-repeat center center;
   margin-right: 1rem;
-}
-
-.menu {
-  display: flex;
-  align-items: center;
-}
-
-.link {
-  display: flex;
-  align-items: center;
-  margin-right: 3rem;
-}
-.link a {
-  list-style: none;
-  color: white;
-  margin: 0 6px;
-  padding: 10px;
-  font-size: 1.5rem;
-}
-
-.dropdown_menu {
-  position: relative;
-  font-size: 1.5rem;
-}
-
-.dropdown_menu a {
-  display: block;
-  color: white;
-  text-decoration: none;
-  padding: 2px;
-  cursor: pointer;
-}
-
-.dropdown_menu svg {
-  margin-left: 1rem;
-}
-.submenu {
-  min-width: 8rem;
-  display: block;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #333;
-  border: 1px solid #555;
-  border-radius: 5px;
-}
-
-.submenu ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-.submenu li {
-  padding: 0.1rem;
-}
-
-.submenu li:hover {
-  background-color: #555;
 }

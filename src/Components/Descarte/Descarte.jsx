@@ -1,8 +1,17 @@
 import React from 'react'
 import styles from './Descarte.module.css'
+import { UserContext } from '../../Contexts/UserContext'
+import FecharMenu from '../Helper/FecharMenu'
 
 const Descarte = () => {
-  return <div className={styles.descarte}>Descartes</div>
+  const { setMenuadmin, setMenusair } = React.useContext(UserContext)
+  const menuClose = [setMenusair, setMenuadmin]
+  return (
+    <div className={styles.descarte}>
+      <FecharMenu menuToClose={menuClose} />
+      Descartes
+    </div>
+  )
 }
 
 export default Descarte

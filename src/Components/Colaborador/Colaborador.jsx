@@ -10,9 +10,8 @@ import { UserContext } from '../../Contexts/UserContext'
 import FecharMenu from '../Helper/FecharMenu'
 
 const Colaborador = () => {
-  const { setMenuadmin } = React.useContext(UserContext)
-  const menuClose = [setMenuadmin]
-
+  const { setMenuadmin, setMenusair } = React.useContext(UserContext)
+  const menuClose = [setMenusair, setMenuadmin]
 
   return (
     <>

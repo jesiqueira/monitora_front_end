@@ -1,13 +1,12 @@
 import React from 'react'
 import styles from './Header.module.css'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { ReactComponent as Logo } from '../Assets/logo.svg'
 import { ReactComponent as Detalhe } from '../Assets/detalheAtivo.svg'
 import { UserContext } from '../Contexts/UserContext'
 
 const Header = () => {
   const { user, userLogout, menusair, setMenusair, menuadmin, setMenuadmin } = React.useContext(UserContext)
-  // console.log(user);
 
   const toggleMenu = () => {
     setMenusair(!menusair)
@@ -16,68 +15,83 @@ const Header = () => {
     setMenuadmin(!menuadmin)
   }
   return (
-    <>
-      <header className={styles.header}>
-        <nav className={`${styles.nav}`}>
-          <Link className={styles.logo} to="/" aria-label="Logo - Home">
-            <Logo /> Monitora
-          </Link>
-
-          {user ? (
-            <div className={styles.menu}>
-              <div className={styles.link}>
-                <Link to="/colaborador">Colaborador</Link>
-                <Link to="/descarte">Descarte</Link>
-                <Link to="">Equipamento</Link>
-                {user.is_admin ? (
-                  <div className={styles.dropdown_menu}>
-                    <Link to="#" onClick={toggleMenuAdmin}>
-                      Admin
-                      <Detalhe />
-                    </Link>
-                    {menuadmin && (
-                      <div className={styles.submenu}>
-                        <ul>
-                          <li>
-                            <Link to="#">Site</Link>
-                          </li>
-                          <li>
-                            <Link to="/admin">Usuário</Link>
-                          </li>
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  ''
-                )}
-              </div>
+    <header className={styles.header}>
+      <NavLink className={styles.logo} to="/" end aria-label="Logo - Home">
+        <Logo />
+        <h1>Monitora</h1>
+      </NavLink>
+      {user ? (
+        <nav className={styles.navegacao}>
+          <div className={styles.links}>
+            <NavLink to="/colaborador" className={(nav) => (nav.isActive ? styles.active : ' ')}>
+              Colaborador
+            </NavLink>
+            <NavLink to="/descarte" className={(nav) => (nav.isActive ? styles.active : ' ')}>
+              Descarte
+            </NavLink>
+            <NavLink to="/equipamento" className={(nav) => (nav.isActive ? styles.active : ' ')}>
+              Equipamento
+            </NavLink>
+            {user.is_admin ? (
               <div className={styles.dropdown_menu}>
-                <Link to="#" onClick={toggleMenu}>
-                  {user.login}
+                {/* className={(nav) => (nav.isActive ? styles.active : ' ')} */}
+                <NavLink
+                  to="#"
+                  onClick={() => {
+                    toggleMenuAdmin()
+                  }}
+                  className={menuadmin ? styles.active : ''}
+                >
+                  Admin
                   <Detalhe />
-                </Link>
-                {menusair && (
+                </NavLink>
+                {menuadmin && (
                   <div className={styles.submenu}>
                     <ul>
                       <li>
-                        <Link to="#" onClick={userLogout}>
-                          Sair
-                        </Link>
+                        <NavLink to="/site">Site</NavLink>
+                      </li>
+                      <li>
+                        <NavLink to="/admin">Usuário</NavLink>
                       </li>
                     </ul>
                   </div>
                 )}
               </div>
-            </div>
-          ) : (
-            <Link className={styles.login} to="/login">
-              Login
-            </Link>
-          )}
+            ) : (
+              ''
+            )}
+          </div>
+          <div className={`${styles.dropdown_menu}`}>
+            <NavLink
+              to="#"
+              onClick={() => {
+                toggleMenu()
+              }}
+              className={menusair ? styles.active : ''}
+            >
+              {user.login}
+              <Detalhe />
+            </NavLink>
+            {menusair && (
+              <div className={styles.submenu}>
+                <ul>
+                  <li>
+                    <NavLink to="#" end onClick={userLogout}>
+                      Sair
+                    </NavLink>
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
         </nav>
-      </header>
-    </>
+      ) : (
+        <NavLink className={styles.login} to="/login" end>
+          Login
+        </NavLink>
+      )}
+    </header>
   )
 }
 
