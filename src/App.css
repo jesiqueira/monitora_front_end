@@ -42,14 +42,8 @@ input {
   font-family: var(--type-first);
   color: #333;
 }
-
 /* .container {
-  max-width: 82rem;
+  max-width: 82rem; 82 * 16 = 1312px
   padding: 0 1rem;
   margin: 0 auto;
 } */
-.container {
-  max-width: 82rem; /*82 * 16 = 1312px*/
-  padding: 0 1rem;
-  margin: 0 auto;
-}

@@ -1,0 +1,11 @@
+.detalhe {
+  position: fixed;
+  right: 50px;
+  margin-top: 40px;
+  transform: rotate(90deg);
+}
+
+.container{
+  display: grid;
+  margin-top: 150px;
+}
