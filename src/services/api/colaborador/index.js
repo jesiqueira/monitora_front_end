@@ -2,7 +2,7 @@ import { api } from '../../Api'
 
 export const getColaboradores = async () => {
   try {
-    let url = '/colaborador'
+    let url = '/colaborador?sort=nome'
     return api.get(url)
   } catch (error) {
     console.log(error)
