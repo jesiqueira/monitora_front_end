@@ -22,8 +22,8 @@ const validacao = {
     message: 'Formato inválido para CEP. ex.: 12345-678',
   },
   estado: {
-    regex: /^[a-zA-Z\s]+$/,
-    message: 'Somente texto é permitido: ex.: São Paulo',
+    regex: /^[a-zA-Z]{2}$/,
+    message: 'Somente sigla é permitido: ex.: SP ou MG',
   },
   endereco: {
     regex: /^[a-zA-Z\s]+$/,

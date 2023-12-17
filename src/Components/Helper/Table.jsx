@@ -1,4 +1,6 @@
 import React from 'react'
+import styles from './Table.module.css'
+import { Link } from 'react-router-dom'
 const Table = ({ colaboradores }) => {
   if (!colaboradores || colaboradores.length === 0) {
     return <p>Nenhum colaborador encontrado.</p>
@@ -7,14 +9,14 @@ const Table = ({ colaboradores }) => {
   const headers = Object.keys(colaboradores[0])
 
   return (
-    <table>
+    <table className={styles.table}>
       <thead>
         <tr>
           {headers.map((header) => {
             if (header === 'is_ativo') {
-              return <th key={header}>Ativo</th>
+              return <th key={header}>ATIVO</th>
             } else {
-              return <th key={header}>{header}</th>
+              return <th key={header}>{header.toUpperCase()}</th>
             }
           })}
         </tr>
@@ -23,8 +25,19 @@ const Table = ({ colaboradores }) => {
         {colaboradores.map((colaborador) => (
           <tr key={colaborador.login}>
             {headers.map((header) => {
+              if (header === 'login') {
+                return <td key={header}> <Link to=''>{colaborador[header]}</Link> </td>
+              }
               if (header === 'is_ativo') {
                 return <td key={header}>{colaborador[header] ? 'Ativo' : 'Inativo'}</td>
+              } else if (header === 'localsite') {
+                // Se o header for 'localsite', imprima os dados específicos
+                return (
+                  <td key={header}>
+                    {/* ID: {colaborador.localsite.id}, Nome:  */}
+                    {colaborador.localsite.nome}
+                  </td>
+                )
               } else {
                 return <td key={header}>{colaborador[header]}</td>
               }

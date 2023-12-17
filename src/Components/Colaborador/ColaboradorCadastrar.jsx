@@ -79,7 +79,7 @@ const ColaboradorCadastrar = () => {
         numero: numero.value,
         cidade: cidade.value,
         telefone: telefone.value,
-        login: login.value,
+        login: login.value.toLowerCase(),
         gestor: gestor.value,
         setor: setor.value,
         relacao: relacao.value,
