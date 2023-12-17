@@ -12,25 +12,33 @@ import FecharMenu from '../Helper/FecharMenu'
 import Input from '../Forms/Input'
 import Button from '../Forms/Button'
 import Table from '../Helper/Table'
+import { getColaboradores } from '../../services/api/colaborador'
 
 const Colaborador = () => {
+  const [colaboradores, setColaboradores] = React.useState('')
   const { setMenuadmin, setMenusair } = React.useContext(UserContext)
   const menuClose = [setMenusair, setMenuadmin]
+  const [loading, setLoading] = React.useState(false)
 
   function handleSubmit(event) {
     event.preventDefault()
     console.log('Prevenindo')
   }
 
-  const tableHeaders = ['Nome', 'Login', 'Setor', 'Gestor', 'Local']
-  const tableData = [
-    ['João', 'jao', 'css', 'JOnas', 'São Carlos'],
-    ['Maria', 'mri', 'css', 'JOnas', 'São Carlos'],
-    ['Carlos', 'casr', 'css', 'JOnas', 'São Carlos'],
-  ]
-
   React.useEffect(() => {
-    console.log('Entrou useEffect')
+    const buscarColaboradores = async () => {
+      try {
+        setLoading(true)
+        const response = await getColaboradores()
+        // console.log(response.data)
+        setColaboradores(response.data)
+      } catch (error) {
+      } finally {
+        setLoading(false)
+      }
+    }
+    buscarColaboradores()
+    // console.log('Entrou useEffect')
   }, [])
 
   return (
@@ -65,9 +73,8 @@ const Colaborador = () => {
               <Button>Buscar</Button>
             </form>
           </section>
-          <section className={styles.table}>
-            <Table headers={tableHeaders} data={tableData} />
-          </section>
+          {loading && <p>Estamos preparando as informações por favor, aguarde.....</p>}
+          {colaboradores && <Table colaboradores={colaboradores} />}
         </main>
       </div>
     </>

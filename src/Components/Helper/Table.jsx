@@ -1,32 +1,39 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+const Table = ({ colaboradores }) => {
+  if (!colaboradores || colaboradores.length === 0) {
+    return <p>Nenhum colaborador encontrado.</p>
+  }
 
-const Table = ({ headers, data }) => {
+  const headers = Object.keys(colaboradores[0])
+
   return (
     <table>
       <thead>
         <tr>
-          {headers.map((hearder, index) => (
-            <th key={index}>{hearder}</th>
-          ))}
+          {headers.map((header) => {
+            if (header === 'is_ativo') {
+              return <th key={header}>Ativo</th>
+            } else {
+              return <th key={header}>{header}</th>
+            }
+          })}
         </tr>
       </thead>
       <tbody>
-        {data.map((row, rowIndex) => (
-          <tr key={rowIndex}>
-            {row.map((cell, cellIndex) => (
-              <td key={cellIndex}>{cell}</td>
-            ))}
+        {colaboradores.map((colaborador) => (
+          <tr key={colaborador.login}>
+            {headers.map((header) => {
+              if (header === 'is_ativo') {
+                return <td key={header}>{colaborador[header] ? 'Ativo' : 'Inativo'}</td>
+              } else {
+                return <td key={header}>{colaborador[header]}</td>
+              }
+            })}
           </tr>
         ))}
       </tbody>
     </table>
   )
-}
-
-Table.propTypes = {
-  headers: PropTypes.arrayOf(PropTypes.string).isRequired,
-  data: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.node)).isRequired,
 }
 
 export default Table

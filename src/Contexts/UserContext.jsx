@@ -1,5 +1,6 @@
 import React from 'react'
-import { api, createSession, validaToken } from '../services/api'
+import { api } from '../services/Api'
+import { createSession, validaToken } from '../services/api/usuario/api'
 import { useNavigate } from 'react-router-dom'
 
 export const UserContext = React.createContext()
