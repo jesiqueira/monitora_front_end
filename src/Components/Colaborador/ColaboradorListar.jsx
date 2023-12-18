@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './ColaboradorListar.module.css'
 import Head from '../Helper/Head'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { ReactComponent as Detalhe } from '../../Assets/detalhe.svg'
 import { ReactComponent as Pdf } from '../../Assets/pdf.svg'
 import { ReactComponent as Excell } from '../../Assets/excell.svg'
@@ -15,6 +15,11 @@ import Table from '../Helper/Table'
 import { getColaboradores } from '../../services/api/colaborador'
 
 const Colaborador = () => {
+  const location = useLocation()
+  const queryParams = new URLSearchParams(location.search)
+  const sort = queryParams.get('sort') || 'nome'
+  // console.log(sort)
+
   const [colaboradores, setColaboradores] = React.useState('')
   const { setMenuadmin, setMenusair } = React.useContext(UserContext)
   const menuClose = [setMenusair, setMenuadmin]
@@ -22,45 +27,49 @@ const Colaborador = () => {
 
   function handleSubmit(event) {
     event.preventDefault()
-    console.log('Prevenindo')
+    // console.log('Prevenindo')
   }
 
   React.useEffect(() => {
-    const buscarColaboradores = async () => {
+    const buscarColaboradores = async (sort) => {
       try {
         setLoading(true)
-        const response = await getColaboradores()
-        // console.log(response.data)
+        const response = await getColaboradores(sort)
         setColaboradores(response.data)
       } catch (error) {
       } finally {
         setLoading(false)
       }
     }
-    buscarColaboradores()
-    // console.log('Entrou useEffect')
-  }, [])
+    buscarColaboradores(sort)
+  }, [sort, location.pathname])
 
   return (
     <>
       <FecharMenu menuToClose={menuClose} />
-      <Head title="Colaboradores" description="Páginas com todos os colaboradores das empresa." />
-      <Detalhe className={styles.detalhe} />
+        <Head title="Colaboradores" description="Páginas com todos os colaboradores das empresa." className={styles.head} />
       <div className={styles.estrutura}>
-        <main className={styles.main}>
-          <section className={styles.menu}>
+        <div className={styles.detalhe}>
+          <Detalhe />
+        </div>
+        <main className={styles.content}>
+          <div className={styles.menu}>
             <div className={styles.titulo}>
               <Detalhe1 />
               <h1>Colaboradores</h1>
             </div>
             <div className={styles.add_detalhe}>
-              <AddColaborador />
-              <Link to="adicionar">Add Colaborador</Link>
-              <Pdf />
-              <Excell />
+              <div>
+                <AddColaborador />
+                <Link to="adicionar">Add Colaborador</Link>
+              </div>
+              <div>
+                <Pdf />
+                <Excell />
+              </div>
             </div>
-          </section>
-          <section className={`${styles.lista}`}>
+          </div>
+          <div className={`${styles.lista}`}>
             <form onSubmit={handleSubmit} className={styles.form}>
               <Input type="text" name="tipo" placeholder="buscar..." />
               <select defaultValue="selecione">
@@ -72,9 +81,11 @@ const Colaborador = () => {
               </select>
               <Button>Buscar</Button>
             </form>
-          </section>
-          {loading && <p>Estamos preparando as informações por favor, aguarde.....</p>}
-          {colaboradores && <Table colaboradores={colaboradores} />}
+          </div>
+          <div className={styles.info}>
+            {loading && <p>Estamos preparando as informações por favor, aguarde.....</p>}
+          </div>
+          <div className={styles.table}>{colaboradores && <Table colaboradores={colaboradores} />}</div>
         </main>
       </div>
     </>

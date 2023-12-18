@@ -9,14 +9,23 @@ const Table = ({ colaboradores }) => {
   const headers = Object.keys(colaboradores[0])
 
   return (
+    // 
     <table className={styles.table}>
       <thead>
         <tr>
           {headers.map((header) => {
             if (header === 'is_ativo') {
               return <th key={header}>ATIVO</th>
-            } else {
+            } else if (header === 'localsite') {
               return <th key={header}>{header.toUpperCase()}</th>
+            } else {
+              return (
+                <th key={header}>
+                  <Link to={`/colaborador?sort=${header}`} target="_self">
+                    {header.toUpperCase()}
+                  </Link>
+                </th>
+              )
             }
           })}
         </tr>
@@ -26,7 +35,11 @@ const Table = ({ colaboradores }) => {
           <tr key={colaborador.login}>
             {headers.map((header) => {
               if (header === 'login') {
-                return <td key={header}> <Link to=''>{colaborador[header]}</Link> </td>
+                return (
+                  <td key={header}>
+                    <Link to={`/colaborador?login=${colaborador.login}`}>{colaborador[header]}</Link>{' '}
+                  </td>
+                )
               }
               if (header === 'is_ativo') {
                 return <td key={header}>{colaborador[header] ? 'Ativo' : 'Inativo'}</td>

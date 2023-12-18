@@ -1,8 +1,8 @@
 import { api } from '../../Api'
 
-export const getColaboradores = async () => {
+export const getColaboradores = async (sort = 'nome') => {
   try {
-    let url = '/colaborador?sort=nome'
+    let url = `/colaborador?sort=${sort}`
     return api.get(url)
   } catch (error) {
     console.log(error)
