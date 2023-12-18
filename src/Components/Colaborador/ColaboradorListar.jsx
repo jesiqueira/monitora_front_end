@@ -35,6 +35,11 @@ const Colaborador = () => {
       try {
         setLoading(true)
         const response = await getColaboradores(sort)
+
+        // Acesso ao cabeçalho 'X-Total-Count' da resposta
+        const totalCountFromHeader = response.headers.get('TotalCount')
+        console.log('TotalCount do cabeçalho:', totalCountFromHeader)
+
         setColaboradores(response.data)
       } catch (error) {
       } finally {
@@ -47,7 +52,7 @@ const Colaborador = () => {
   return (
     <>
       <FecharMenu menuToClose={menuClose} />
-        <Head title="Colaboradores" description="Páginas com todos os colaboradores das empresa." className={styles.head} />
+      <Head title="Colaboradores" description="Páginas com todos os colaboradores das empresa." className={styles.head} />
       <div className={styles.estrutura}>
         <div className={styles.detalhe}>
           <Detalhe />
@@ -82,9 +87,7 @@ const Colaborador = () => {
               <Button>Buscar</Button>
             </form>
           </div>
-          <div className={styles.info}>
-            {loading && <p>Estamos preparando as informações por favor, aguarde.....</p>}
-          </div>
+          <div className={styles.info}>{loading && <p>Estamos preparando as informações por favor, aguarde.....</p>}</div>
           <div className={styles.table}>{colaboradores && <Table colaboradores={colaboradores} />}</div>
         </main>
       </div>
