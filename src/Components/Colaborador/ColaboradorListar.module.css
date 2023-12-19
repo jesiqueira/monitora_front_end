@@ -6,7 +6,8 @@
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
     'detalhe detalhe '
-    'content content';
+    'content content'
+    'paginacao paginacao';
 }
 /* DETALHE */
 .detalhe {
@@ -31,6 +32,13 @@
     'info info'
     'table table';
   padding: 10px;
+}
+
+.paginacao{
+  grid-area: paginacao;
+  display: grid;
+  justify-content: center;
+  align-items: center;
 }
 /* MENU */
 .menu {
@@ -155,6 +163,6 @@
 
 .table {
   grid-area: table;
-  margin: 50px 0;
+  margin-top: 50px;
   padding: 10px;
 }

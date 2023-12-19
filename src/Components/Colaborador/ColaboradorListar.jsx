@@ -13,6 +13,7 @@ import Input from '../Forms/Input'
 import Button from '../Forms/Button'
 import Table from '../Helper/Table'
 import { getColaboradores } from '../../services/api/colaborador'
+import Paginacao from '../Helper/Paginacao'
 
 const Colaborador = () => {
   const location = useLocation()
@@ -25,20 +26,24 @@ const Colaborador = () => {
   const menuClose = [setMenusair, setMenuadmin]
   const [loading, setLoading] = React.useState(false)
 
+  const [currentPage, setCurrentPage] = React.useState(1)
+  const [tatalIntemInDataBase, setTotalIntemInDataBase] = React.useState(0)
+  const intemsPorPage = 25
+
   function handleSubmit(event) {
     event.preventDefault()
     // console.log('Prevenindo')
   }
 
   React.useEffect(() => {
-    const buscarColaboradores = async (sort) => {
+    const buscarColaboradores = async (sort, page) => {
       try {
         setLoading(true)
-        const response = await getColaboradores(sort)
+        const response = await getColaboradores(sort, page)
 
         // Acesso ao cabeçalho 'X-Total-Count' da resposta
         const totalCountFromHeader = response.headers.get('TotalCount')
-        console.log('TotalCount do cabeçalho:', totalCountFromHeader)
+        setTotalIntemInDataBase(parseInt(totalCountFromHeader) || 0)
 
         setColaboradores(response.data)
       } catch (error) {
@@ -46,8 +51,12 @@ const Colaborador = () => {
         setLoading(false)
       }
     }
-    buscarColaboradores(sort)
-  }, [sort, location.pathname])
+    buscarColaboradores(sort, currentPage)
+  }, [sort, currentPage])
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page)
+  }
 
   return (
     <>
@@ -90,6 +99,9 @@ const Colaborador = () => {
           <div className={styles.info}>{loading && <p>Estamos preparando as informações por favor, aguarde.....</p>}</div>
           <div className={styles.table}>{colaboradores && <Table colaboradores={colaboradores} />}</div>
         </main>
+        <div className={styles.paginacao}>
+          <Paginacao totalItems={tatalIntemInDataBase} itemsPorPagina={intemsPorPage} onPageChange={handlePageChange} />
+        </div>
       </div>
     </>
   )
