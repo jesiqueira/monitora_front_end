@@ -13,6 +13,7 @@
 .detalhe {
   grid-area: detalhe;
   margin: 50px 120px 0 0;
+  max-height: 52px;
   display: grid;
   justify-items: end;
 }
@@ -23,6 +24,7 @@
 
 /* CONNTENT */
 .content {
+  /* background: #b47162; */
   grid-area: content;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -32,6 +34,7 @@
     'info info'
     'table table';
   padding: 10px;
+  margin-top: 10px;
 }
 
 .paginacao{
@@ -47,7 +50,6 @@
   grid-template-columns: 1fr 2fr;
   grid-template-areas: 'titulo add_detalhe';
   justify-items: center;
-  margin-top: 50px;
 }
 
 .titulo {
