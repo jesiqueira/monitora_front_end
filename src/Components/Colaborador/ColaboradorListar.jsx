@@ -53,7 +53,20 @@ const Colaborador = () => {
     buscarColaboradores(sort, currentPage)
   }, [sort, currentPage])
 
-  const validacao = (campo, valor) => {}
+  const validacao = (campo, valor) => {
+    const re = /^[a-zA-Z]+$/
+    // .regex.test()
+    if (campo === 'selecione') {
+      setErro('Selecione um valor válido..')
+      return false
+    } else if (!re.test(valor)) {
+      setErro('Valor inválido para campo de busca.')
+      return false
+    } else {
+      setErro(false)
+    }
+    return true
+  }
 
   const handlePageChange = (page) => {
     setCurrentPage(page)
@@ -64,16 +77,9 @@ const Colaborador = () => {
     const campo = event.target[1].value
     const valor = event.target[0].value
     setErro(false)
-    // .regex.test(/^[a-zA-Z]+$/)
-    if (campo === 'selecione') {
-      setErro('Selecione um valor válido..')
-    } else if (!valor) {
-      setErro('Preencha um valor para buscar.')
-    } else {
-      setErro(false)
-    }
 
-    if (true) {
+    if (validacao(campo, valor)) {
+      setErro('')
       const filtro = `${campo}=%${valor}%`
       console.log('Query: ', filtro)
     }
