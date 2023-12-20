@@ -14,8 +14,11 @@ import Button from '../Forms/Button'
 import Table from '../Helper/Table'
 import { getColaboradores } from '../../services/api/colaborador'
 import Paginacao from '../Helper/Paginacao'
+import useFiltro from '../../Hooks/useFiltroForm'
 
 const Colaborador = () => {
+  // const tipo = useFiltro('tipo')
+
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
   const sort = queryParams.get('sort') || 'nome'
@@ -23,17 +26,13 @@ const Colaborador = () => {
 
   const [colaboradores, setColaboradores] = React.useState('')
   const { setMenuadmin, setMenusair } = React.useContext(UserContext)
-  const menuClose = [setMenusair, setMenuadmin]
   const [loading, setLoading] = React.useState(false)
-
   const [currentPage, setCurrentPage] = React.useState(1)
   const [tatalIntemInDataBase, setTotalIntemInDataBase] = React.useState(0)
+  const [filtro, setFiltro] = React.useState('')
+  const [erro, setErro] = React.useState(null)
+  const menuClose = [setMenusair, setMenuadmin]
   const intemsPorPage = 25
-
-  function handleSubmit(event) {
-    event.preventDefault()
-    // console.log('Prevenindo')
-  }
 
   React.useEffect(() => {
     const buscarColaboradores = async (sort, page) => {
@@ -54,8 +53,30 @@ const Colaborador = () => {
     buscarColaboradores(sort, currentPage)
   }, [sort, currentPage])
 
+  const validacao = (campo, valor) => {}
+
   const handlePageChange = (page) => {
     setCurrentPage(page)
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    const campo = event.target[1].value
+    const valor = event.target[0].value
+    setErro(false)
+    // .regex.test(/^[a-zA-Z]+$/)
+    if (campo === 'selecione') {
+      setErro('Selecione um valor válido..')
+    } else if (!valor) {
+      setErro('Preencha um valor para buscar.')
+    } else {
+      setErro(false)
+    }
+
+    if (true) {
+      const filtro = `${campo}=%${valor}%`
+      console.log('Query: ', filtro)
+    }
   }
 
   return (
@@ -94,6 +115,7 @@ const Colaborador = () => {
                 <option value="login">Login</option>
               </select>
               <Button>Buscar</Button>
+              {erro ? <p>{erro}</p> : ''}
             </form>
           </div>
           <div className={styles.info}>{loading && <p>Estamos preparando as informações por favor, aguarde.....</p>}</div>
