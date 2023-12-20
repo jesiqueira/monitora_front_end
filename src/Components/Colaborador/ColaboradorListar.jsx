@@ -12,13 +12,10 @@ import FecharMenu from '../Helper/FecharMenu'
 import Input from '../Forms/Input'
 import Button from '../Forms/Button'
 import Table from '../Helper/Table'
-import { getColaboradores } from '../../services/api/colaborador'
+import { getColaboradores, showColaborador } from '../../services/api/colaborador'
 import Paginacao from '../Helper/Paginacao'
-import useFiltro from '../../Hooks/useFiltroForm'
 
 const Colaborador = () => {
-  // const tipo = useFiltro('tipo')
-
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
   const sort = queryParams.get('sort') || 'nome'
@@ -38,24 +35,31 @@ const Colaborador = () => {
     const buscarColaboradores = async (sort, page) => {
       try {
         setLoading(true)
-        const response = await getColaboradores(sort, page)
-
-        // Acesso ao cabeçalho 'X-Total-Count' da resposta
-        const totalCountFromHeader = response.headers.get('TotalCount')
-        setTotalIntemInDataBase(parseInt(totalCountFromHeader) || 0)
-
-        setColaboradores(response.data)
+        console.log('tem filtro: ', filtro);
+        if (filtro) {
+          const response = await showColaborador(filtro)
+          setColaboradores(response.data)
+        } else {
+          const response = await getColaboradores(sort, page)
+          
+          // Acesso ao cabeçalho 'X-Total-Count' da resposta
+          const totalCountFromHeader = response.headers.get('TotalCount')
+          setTotalIntemInDataBase(parseInt(totalCountFromHeader) || 0)
+          
+          setColaboradores(response.data)
+          console.log(response.data)
+        }
       } catch (error) {
       } finally {
+        // setFiltro(null)
         setLoading(false)
       }
     }
     buscarColaboradores(sort, currentPage)
-  }, [sort, currentPage])
+  }, [sort, currentPage, filtro])
 
   const validacao = (campo, valor) => {
     const re = /^[a-zA-Z]+$/
-    // .regex.test()
     if (campo === 'selecione') {
       setErro('Selecione um valor válido..')
       return false
@@ -80,8 +84,8 @@ const Colaborador = () => {
 
     if (validacao(campo, valor)) {
       setErro('')
-      const filtro = `${campo}=%${valor}%`
-      console.log('Query: ', filtro)
+      const filt = `${campo}=%${valor}%`
+      setFiltro(filt)
     }
   }
 

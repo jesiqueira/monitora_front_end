@@ -37,7 +37,7 @@
   margin-top: 10px;
 }
 
-.paginacao{
+.paginacao {
   grid-area: paginacao;
   display: grid;
   justify-content: center;
@@ -152,10 +152,12 @@
   background: #b47162;
   color: #47261f;
 }
+
 .form button:focus,
 .form button:hover {
   color: white;
 }
+
 .info {
   grid-area: info;
   font-size: 2rem;
