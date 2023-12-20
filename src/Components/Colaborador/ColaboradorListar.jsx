@@ -64,9 +64,10 @@ const Colaborador = () => {
     const campo = event.target[1].value
     const valor = event.target[0].value
     setErro(false)
+    // .regex.test(/^[a-zA-Z]+$/)
     if (campo === 'selecione') {
       setErro('Selecione um valor válido..')
-    } else if (!valor.regex.test(/^[a-zA-Z]+$/)) {
+    } else if (!valor) {
       setErro('Preencha um valor para buscar.')
     } else {
       setErro(false)
