@@ -103,7 +103,6 @@
 }
 
 .form {
-  /* background: rgb(8, 192, 33); */
   display: flex;
   margin-right: 210px;
   align-items: center;
@@ -156,6 +155,12 @@
 .form button:focus,
 .form button:hover {
   color: white;
+}
+
+.exibirErro{
+  max-width: 280px;
+  margin-top: 5px;
+  color: #e71f1f;
 }
 
 .info {

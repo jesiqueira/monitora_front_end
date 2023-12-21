@@ -35,21 +35,25 @@ const Colaborador = () => {
     const buscarColaboradores = async (sort, page) => {
       try {
         setLoading(true)
-        console.log('tem filtro: ', filtro);
         if (filtro) {
           const response = await showColaborador(filtro)
-          setColaboradores(response.data)
-        } else {
-          const response = await getColaboradores(sort, page)
-          
           // Acesso ao cabeçalho 'X-Total-Count' da resposta
           const totalCountFromHeader = response.headers.get('TotalCount')
           setTotalIntemInDataBase(parseInt(totalCountFromHeader) || 0)
-          
           setColaboradores(response.data)
-          console.log(response.data)
+        } else {
+          const response = await getColaboradores(sort, page)
+
+          // Acesso ao cabeçalho 'X-Total-Count' da resposta
+          const totalCountFromHeader = response.headers.get('TotalCount')
+          setTotalIntemInDataBase(parseInt(totalCountFromHeader) || 0)
+
+          setColaboradores(response.data)
         }
       } catch (error) {
+        if (error.response.status === 404) {
+          setErro(error.response.data.error)
+        }
       } finally {
         // setFiltro(null)
         setLoading(false)
@@ -61,10 +65,10 @@ const Colaborador = () => {
   const validacao = (campo, valor) => {
     const re = /^[a-zA-Z]+$/
     if (campo === 'selecione') {
-      setErro('Selecione um valor válido..')
+      setErro('Selecione um valor válido...')
       return false
     } else if (!re.test(valor)) {
-      setErro('Valor inválido para campo de busca.')
+      setErro('Valor inválido para campo de buscar...')
       return false
     } else {
       setErro(false)
@@ -125,8 +129,8 @@ const Colaborador = () => {
                 <option value="login">Login</option>
               </select>
               <Button>Buscar</Button>
-              {erro ? <p>{erro}</p> : ''}
             </form>
+            {erro ? <p className={styles.exibirErro}>{erro}</p> : ''}
           </div>
           <div className={styles.info}>{loading && <p>Estamos preparando as informações por favor, aguarde.....</p>}</div>
           <div className={styles.table}>{colaboradores && <Table colaboradores={colaboradores} />}</div>
