@@ -4,6 +4,7 @@ import Head from '../Helper/Head'
 import Input from '../Forms/Input'
 import Button from '../Forms/Button'
 import { ReactComponent as Detalhe } from '../../Assets/detalhe.svg'
+import { ReactComponent as AddColaborador } from '../../Assets/addcolaborador.svg'
 import useColaborador from '../../Hooks/useColaboradorForm'
 import { getLocalSites } from '../../services/api/localSite'
 import { useNavigate } from 'react-router-dom'
@@ -125,43 +126,57 @@ const ColaboradorCadastrar = () => {
   return (
     <>
       <Head title="Add Colaborador" description="Páginas para cadastro de novos colaboradores na empresa." />
-      <Detalhe className={styles.detalhe} />
-      {/* {locais && locais.map((l) => <p key={l.id}>{l.nome}</p>)} */}
-      <div className={styles.container}>
-        <h1>Cadastrar colaborador</h1>
-        <form onSubmit={handleSubmit}>
-          <Input label="Nome" id="nome" name="nome" type="text" {...nome} />
-          <Input label="CPF" id="cpf" name="cpf" type="text" {...cpf} />
-          <Input label="RG" id="rg" name="rg" type="text" {...rg} />
-          <Input label="CEP" id="cep" name="cep" type="text" {...cep} />
-          <Input label="Estado" id="estado" name="estado" type="text" {...estado} />
-          <Input label="Endereco" id="endereco" name="endereco" type="text" {...endereco} />
-          <Input label="Bairro" id="bairro" name="bairro" type="text" {...bairro} />
-          <Input label="Número" id="numero" name="numero" type="text" {...numero} />
-          <Input label="Cidade" id="cidade" name="cidade" type="text" {...cidade} />
-          <Input label="Telefone" id="telefone" name="telefone" type="text" {...telefone} />
-          <Input label="Login" id="login" name="login" type="text" {...login} />
-          <Input label="Gestor" id="gestor" name="gestor" type="text" {...gestor} />
-          <Input label="Setor" id="setor" name="setor" type="text" {...setor} />
-          <label htmlFor="lecioneoOp">Selecione Local</label>
-          <select id="lecioneoOp" onChange={handleChange} defaultValue="selecione">
-            <option value="selecione" disabled>
-              selecione
-            </option>
-            {locais &&
-              locais.map((local) => (
-                <option key={local.id} value={local.id} onChange={selecionar.onChange} onBlur={selecionar.onBlur}>
-                  {local.nome}
-                </option>
-              ))}
-          </select>
-          {erroSelecionar && <p className={styles.erro}>{erroSelecionar}</p>}
-          <Input label="Relacao" id="relacao" name="relacao" type="text" {...relacao} />
-          {/* {opcaoSelecionada && <p>{opcaoSelecionada}</p>} */}
-          {loading ? <Button disabled>Cadastrando....</Button> : <Button>Cadastrar</Button>}
+      <div className={styles.estrutura}>
+        <div className={styles.detalhe}>
+          <Detalhe />
+        </div>
+        <main className={styles.content}>
+          <div className={styles.titulo}>
+            <AddColaborador />
+            <h1>Cadastrar colaborador</h1>
+          </div>
+          <section className={styles.section}>
+            <form onSubmit={handleSubmit}>
+              <Input label="Nome" id="nome" name="nome" type="text" {...nome} />
+              <div>
+                <Input label="CPF" id="cpf" name="cpf" type="text" {...cpf} />
+                <Input label="RG" id="rg" name="rg" type="text" {...rg} />
+                <Input label="CEP" id="cep" name="cep" type="text" {...cep} />
+                <Input label="Estado" id="estado" name="estado" type="text" {...estado} />
+              </div>
+              <Input label="Endereco" id="endereco" name="endereco" type="text" {...endereco} />
+              <div>
+                <Input label="Bairro" id="bairro" name="bairro" type="text" {...bairro} />
+                <Input label="Número" id="numero" name="numero" type="text" {...numero} />
+                <Input label="Cidade" id="cidade" name="cidade" type="text" {...cidade} />
+              </div>
+              <div>
+                <Input label="Telefone" id="telefone" name="telefone" type="text" {...telefone} />
+                <Input label="Login" id="login" name="login" type="text" {...login} />
+                <Input label="Gestor" id="gestor" name="gestor" type="text" {...gestor} />
+                <Input label="Setor" id="setor" name="setor" type="text" {...setor} />
+                <label htmlFor="lecioneoOp">Selecione Local</label>
+                <select id="lecioneoOp" onChange={handleChange} defaultValue="selecione">
+                  <option value="selecione" disabled>
+                    selecione
+                  </option>
+                  {locais &&
+                    locais.map((local) => (
+                      <option key={local.id} value={local.id} onChange={selecionar.onChange} onBlur={selecionar.onBlur}>
+                        {local.nome}
+                      </option>
+                    ))}
+                </select>
+                {erroSelecionar && <p className={styles.erro}>{erroSelecionar}</p>}
+                <Input label="Relacao" id="relacao" name="relacao" type="text" {...relacao} />
+              </div>
+              {/* {opcaoSelecionada && <p>{opcaoSelecionada}</p>} */}
+              {loading ? <Button disabled>Cadastrando....</Button> : <Button>Cadastrar</Button>}
 
-          {error && <p className={styles.erro}>{error}</p>}
-        </form>
+              {error && <p className={styles.erro}>{error}</p>}
+            </form>
+          </section>
+        </main>
       </div>
     </>
   )

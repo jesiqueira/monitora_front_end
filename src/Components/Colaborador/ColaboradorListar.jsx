@@ -21,7 +21,6 @@ const Colaborador = () => {
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
   const sort = queryParams.get('sort') || 'nome'
-  // console.log(sort)
 
   const [colaboradores, setColaboradores] = React.useState('')
   const { setMenuadmin, setMenusair } = React.useContext(UserContext)
@@ -59,7 +58,6 @@ const Colaborador = () => {
           setErro(error.response.data.error)
         }
       } finally {
-        // setFiltro(null)
         setLoading(false)
       }
     }
@@ -83,11 +81,6 @@ const Colaborador = () => {
   const handlePageChange = (page) => {
     setCurrentPage(page)
   }
-
-  // const handlePdfGenerate = () => {
-  //   setExportPDF(true)
-  //   console.log('Me chamou!!Colaborador:', exportPDF)
-  // }
 
   function handleSubmit(event) {
     event.preventDefault()
