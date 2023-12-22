@@ -15,6 +15,7 @@ import Table from '../Helper/Table'
 import { getColaboradores, showColaborador } from '../../services/api/colaborador'
 import Paginacao from '../Helper/Paginacao'
 import ExportarPdf from '../Helper/ExportarPdf'
+import ExportarXLSX from '../Helper/ExportarXLSX'
 
 const Colaborador = () => {
   const location = useLocation()
@@ -30,6 +31,7 @@ const Colaborador = () => {
   const [filtro, setFiltro] = React.useState('')
   const [erro, setErro] = React.useState(null)
   const [exportPDF, setExportPDF] = React.useState(false)
+  const [exportXLSX, setExportXLSX] = React.useState(false)
   const menuClose = [setMenusair, setMenuadmin]
   const intemsPorPage = 25
 
@@ -122,7 +124,8 @@ const Colaborador = () => {
               <div>
                 <Pdf onClick={() => setExportPDF(true)} />
                 {exportPDF && <ExportarPdf colaboradores={colaboradores} onSetPDF={setExportPDF} />}
-                <Excell />
+                <Excell onClick={() => setExportXLSX(true)} />
+                {exportXLSX && <ExportarXLSX colaboradores={colaboradores} onSetXLSX={setExportXLSX} />}
               </div>
             </div>
           </div>
