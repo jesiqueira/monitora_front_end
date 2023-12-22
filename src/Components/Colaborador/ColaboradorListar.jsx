@@ -14,6 +14,7 @@ import Button from '../Forms/Button'
 import Table from '../Helper/Table'
 import { getColaboradores, showColaborador } from '../../services/api/colaborador'
 import Paginacao from '../Helper/Paginacao'
+import ExportarPdf from '../Helper/ExportarPdf'
 
 const Colaborador = () => {
   const location = useLocation()
@@ -28,6 +29,7 @@ const Colaborador = () => {
   const [tatalIntemInDataBase, setTotalIntemInDataBase] = React.useState(0)
   const [filtro, setFiltro] = React.useState('')
   const [erro, setErro] = React.useState(null)
+  const [exportPDF, setExportPDF] = React.useState(false)
   const menuClose = [setMenusair, setMenuadmin]
   const intemsPorPage = 25
 
@@ -80,6 +82,11 @@ const Colaborador = () => {
     setCurrentPage(page)
   }
 
+  // const handlePdfGenerate = () => {
+  //   setExportPDF(true)
+  //   console.log('Me chamou!!Colaborador:', exportPDF)
+  // }
+
   function handleSubmit(event) {
     event.preventDefault()
     const campo = event.target[1].value
@@ -113,7 +120,8 @@ const Colaborador = () => {
                 <Link to="adicionar">Add Colaborador</Link>
               </div>
               <div>
-                <Pdf />
+                <Pdf onClick={() => setExportPDF(true)} />
+                {exportPDF && <ExportarPdf colaboradores={colaboradores} onSetPDF={setExportPDF} />}
                 <Excell />
               </div>
             </div>
