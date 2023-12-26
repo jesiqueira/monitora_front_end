@@ -37,7 +37,7 @@ const Table = ({ colaboradores }) => {
               if (header === 'login') {
                 return (
                   <td key={header}>
-                    <Link to={`/colaborador?login=${colaborador.login}`}>{colaborador[header]}</Link>{' '}
+                    <Link to={`update?login=${colaborador.login}`}>{colaborador[header]}</Link>{' '}
                   </td>
                 )
               }
