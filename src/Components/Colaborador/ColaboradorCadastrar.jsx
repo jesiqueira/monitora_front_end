@@ -136,42 +136,48 @@ const ColaboradorCadastrar = () => {
             <h1>Cadastrar colaborador</h1>
           </div>
           <section className={styles.section}>
-            <form onSubmit={handleSubmit}>
-              <Input label="Nome" id="nome" name="nome" type="text" {...nome} />
+            <form onSubmit={handleSubmit} className={styles.form}>
               <div>
-                <Input label="CPF" id="cpf" name="cpf" type="text" {...cpf} />
-                <Input label="RG" id="rg" name="rg" type="text" {...rg} />
-                <Input label="CEP" id="cep" name="cep" type="text" {...cep} />
-                <Input label="Estado" id="estado" name="estado" type="text" {...estado} />
-              </div>
-              <Input label="Endereco" id="endereco" name="endereco" type="text" {...endereco} />
-              <div>
-                <Input label="Bairro" id="bairro" name="bairro" type="text" {...bairro} />
-                <Input label="Número" id="numero" name="numero" type="text" {...numero} />
-                <Input label="Cidade" id="cidade" name="cidade" type="text" {...cidade} />
+                <Input label="Nome" id="nome" name="nome" type="text" {...nome} />
+                <div className={styles.dados1}>
+                  <Input label="CPF" id="cpf" name="cpf" type="text" {...cpf} />
+                  <Input label="RG" id="rg" name="rg" type="text" {...rg} />
+                  <Input label="CEP" id="cep" name="cep" type="text" {...cep} />
+                  <Input label="Estado" id="estado" name="estado" type="text" {...estado} />
+                </div>
+                <Input label="Endereco" id="endereco" name="endreco" type="text" {...endereco} />
+                <div className={styles.dados2}>
+                  <Input label="Bairro" id="bairro" name="bairro" type="text" {...bairro} />
+                  <Input label="Número" id="numero" name="numero" type="text" {...numero} />
+                  <Input label="Cidade" id="cidade" name="cidade" type="text" {...cidade} />
+                </div>
               </div>
               <div>
                 <Input label="Telefone" id="telefone" name="telefone" type="text" {...telefone} />
                 <Input label="Login" id="login" name="login" type="text" {...login} />
                 <Input label="Gestor" id="gestor" name="gestor" type="text" {...gestor} />
                 <Input label="Setor" id="setor" name="setor" type="text" {...setor} />
-                <label htmlFor="lecioneoOp">Selecione Local</label>
-                <select id="lecioneoOp" onChange={handleChange} defaultValue="selecione">
-                  <option value="selecione" disabled>
-                    selecione
-                  </option>
-                  {locais &&
-                    locais.map((local) => (
-                      <option key={local.id} value={local.id} onChange={selecionar.onChange} onBlur={selecionar.onBlur}>
-                        {local.nome}
-                      </option>
-                    ))}
-                </select>
+                <label htmlFor="lecioneoOp" className={styles.local}>
+                  Selecione Local
+                  <select className={styles.selection} id="lecioneoOp" onChange={handleChange} defaultValue="selecione">
+                    <option value="selecione" disabled>
+                      selecione
+                    </option>
+                    {locais &&
+                      locais.map((local) => (
+                        <option key={local.id} value={local.id} onChange={selecionar.onChange} onBlur={selecionar.onBlur}>
+                          {local.nome}
+                        </option>
+                      ))}
+                  </select>
+                </label>
                 {erroSelecionar && <p className={styles.erro}>{erroSelecionar}</p>}
-                <Input label="Relacao" id="relacao" name="relacao" type="text" {...relacao} />
+                <div className={styles.relacao}>
+                  <Input label="Relacao" id="relacao" name="relacao" type="text" {...relacao} />
+                </div>
               </div>
               {/* {opcaoSelecionada && <p>{opcaoSelecionada}</p>} */}
-              {loading ? <Button disabled>Cadastrando....</Button> : <Button>Cadastrar</Button>}
+              <div className={styles.button}>{loading ? <Button disabled>Cadastrando....</Button> : <Button>Cadastrar</Button>}</div>
 
               {error && <p className={styles.erro}>{error}</p>}
             </form>
