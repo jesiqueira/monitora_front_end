@@ -3,6 +3,8 @@ import Input from '../Forms/Input'
 import Button from '../Forms/Button'
 import useForm from '../../Hooks/useForm'
 import { UserContext } from '../../Contexts/UserContext'
+import { ReactComponent as Cadeado } from '../../Assets/cadeado.svg'
+import styles from './Login.module.css'
 // import { Link } from 'react-router-dom'
 
 const LoginForm = () => {
@@ -20,19 +22,21 @@ const LoginForm = () => {
   }
 
   return (
-    <div>
-      {/* <Link to="/">Monitora</Link> */}
-      <section>
-        <form onSubmit={handleSubmit}>
-          <Input label="Login" type="text" name="login" {...login} />
-          <Input label="Senha" type="password" name="password" {...password} />
+    <main className={styles.principal}>
+      <div className={styles.main}>
+        <Cadeado className={styles.cadeado} />
+        <section className={styles.login}>
+          <form onSubmit={handleSubmit}>
+            <Input label="Login" type="text" name="login" {...login} />
+            <Input label="Senha" type="password" name="password" {...password} />
 
-          {loading ? <Button disabled>Carregando....</Button> : <Button>Entrar</Button>}
+            {loading ? <Button disabled>Carregando....</Button> : <Button>Entrar</Button>}
 
-          {error && <p>{error}</p>}
-        </form>
-      </section>
-    </div>
+            {error && <p className={styles.error}>{error}</p>}
+          </form>
+        </section>
+      </div>
+    </main>
   )
 }
 

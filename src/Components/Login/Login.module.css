@@ -1,16 +1,23 @@
-.login {
-  /* background: #6d3d3d; */
+.principal {
+  height: calc(100vh - 7rem);
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  /* max-width: 50rem;
-  margin: 0 auto; */
-  height: calc(100vh - 6rem);
-  /* align-content: center; */
 }
 
-.login::before {
-  display: block;
-  content: '';
-  background: url('../../Assets/cadeado.svg') no-repeat center center;
-  background-size: cover;
+.main {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  justify-items: center;
+  padding: 50px;
+}
+.login {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+
+.error {
+  color: #f31;
+  font-size: 0.875rem;
+  margin-top: 1rem;
 }
