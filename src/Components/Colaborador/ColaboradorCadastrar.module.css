@@ -52,8 +52,11 @@
   column-gap: 60px;
 }
 
-.form .button {
+.button {
   grid-column: 2;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
 }
 
 .dados1 {
@@ -82,20 +85,15 @@
   background: #eee;
   transition: 0.1s;
 }
-.selection:focus, .selection:hover{
+.selection:focus,
+.selection:hover {
   outline: none;
   border-color: #e71f1f;
   background: white;
   box-shadow: 0 0 0 3px #fb8267;
 }
-.relacao{
+.relacao {
   margin-top: 1rem;
-}
-
-.button{
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
 }
 
 .erro {

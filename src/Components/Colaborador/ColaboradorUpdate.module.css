@@ -1,0 +1,164 @@
+.estrutura {
+  display: grid;
+  grid-template-areas:
+    'detalhe detalhe'
+    'content content';
+}
+
+.detalhe {
+  grid-area: detalhe;
+  margin: 50px 120px 0 0;
+  max-height: 52px;
+  display: grid;
+  justify-items: end;
+}
+.content {
+  grid-area: content;
+  display: grid;
+  grid-template-areas:
+    'titulo titulo'
+    'section section';
+}
+
+.titulo {
+  /* background: rebeccapurple; */
+  grid-area: titulo;
+  display: flex;
+  justify-items: flex-start;
+  align-items: center;
+  padding: 10px;
+  margin-left: 50px;
+  max-width: 630px;
+}
+
+.titulo h1 {
+  font-size: 2rem;
+  margin-left: 10px;
+}
+
+.section {
+  /* background: rebeccapurple; */
+  grid-area: section;
+  background: #f5f5f5;
+  margin: 80px 100px 120px 100px;
+  padding: 60px;
+  border-radius: 5px;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 60px;
+}
+
+.button {
+  grid-column: 2;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.dados1 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 40px;
+}
+
+.dados2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 40px;
+}
+
+.local {
+  display: flex;
+  flex-direction: column;
+}
+
+.selection {
+  margin: 8px 0px;
+  font-size: 1rem;
+  padding: 0.8rem;
+  border: 1px solid #eee;
+  border-radius: 0.4rem;
+  background: #eee;
+  transition: 0.1s;
+}
+
+.selection:focus,
+.selection:hover {
+  outline: none;
+  border-color: #e71f1f;
+  background: white;
+  box-shadow: 0 0 0 3px #fb8267;
+}
+
+.relacao {
+  margin-top: 1rem;
+}
+
+.erro {
+  color: #f31;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+} */
+
+/* Rounded sliders */
+/* .slider.round {
+  border-radius: 34px;
+} */
+
+/* .slider.round:before {
+  border-radius: 50%;
+} */

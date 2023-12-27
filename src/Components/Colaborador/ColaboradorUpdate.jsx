@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import styles from './ColaboradorUpdate.module.css'
 import Head from '../Helper/Head'
 import { useLocation } from 'react-router-dom'
 import { colaboradorShow, updateColaborador } from '../../services/api/colaborador'
@@ -11,6 +10,7 @@ import Input from '../Forms/Input'
 import Button from '../Forms/Button'
 
 import { UserContext } from '../../Contexts/UserContext'
+import styles from './ColaboradorUpdate.module.css'
 
 const ColaboradorUpdate = () => {
   const { loading, error } = React.useContext(UserContext)
@@ -89,61 +89,73 @@ const ColaboradorUpdate = () => {
   return (
     <>
       <Head title="Update Colaboradores" description="Páginas para visualizar e atualizar dados dos colaboradores." className={styles.head} />
-      <div className={styles.colaborador}>
-        <Detalhe />
-        <DetalheUpdade />
-        <h1>Informações / Update - Colaborador</h1>
-        {loading ? (
-          <p>Carregando...</p>
-        ) : (
-          <div>
-            <form onSubmit={handleSubmit} className={styles.form}>
-              <div>
-                <Input label="Nome" id="nome" name="nome" type="text" value={colaborador.nome || ''} onChange={handleInputChange} />
-                <div className={styles.dados1}>
-                  <Input label="CPF" id="cpf" name="cpf" type="text" value={colaborador.cpf || ''} onChange={handleInputChange} />
-                  <Input label="RG" id="rg" name="rg" type="text" value={colaborador.rg || ''} onChange={handleInputChange} />
-                  <Input label="CEP" id="cep" name="cep" type="text" value={colaborador.cep || ''} onChange={handleInputChange} />
-                  <Input label="Estado" id="estado" name="estado" type="text" value={colaborador.estado || ''} onChange={handleInputChange} />
-                </div>
-                <Input label="Endereco" id="endereco" name="endereco" type="text" value={colaborador.endereco || ''} onChange={handleInputChange} />
-                <div className={styles.dados2}>
-                  <Input label="Bairro" id="bairro" name="bairro" type="text" value={colaborador.bairro || ''} onChange={handleInputChange} />
-                  <Input label="Número" id="numero" name="numero" type="text" value={colaborador.numero || ''} onChange={handleInputChange} />
-                  <Input label="Cidade" id="cidade" name="cidade" type="text" value={colaborador.cidade || ''} onChange={handleInputChange} />
-                </div>
-              </div>
-              <div>
-                <Input label="Telefone" id="telefone" name="telefone" type="text" value={colaborador.telefone || ''} onChange={handleInputChange} />
-                <Input label="Login" id="login" name="login" type="text" value={colaborador.login || ''} onChange={handleInputChange} />
-                <Input label="Gestor" id="gestor" name="gestor" type="text" value={colaborador.gestor || ''} onChange={handleInputChange} />
-                <Input label="Setor" id="setor" name="setor" type="text" value={colaborador.setor || ''} onChange={handleInputChange} />
-                <label htmlFor="lecioneoOp" className={styles.local}>
-                  Selecione Local
-                  <select className={styles.selection} id="lecioneoOp" name="lecioneoOp" defaultValue="Selecione" onChange={handleInputChange}>
-                    <option value="Selecione" disabled>
-                      {colaborador && colaborador.localsite.nome}
-                    </option>
-                    {locais &&
-                      locais.map((local) => (
-                        <option key={local.id} value={local.id}>
-                          {local.nome}
-                        </option>
-                      ))}
-                  </select>
-                </label>
-                {/* {erroSelecionar && <p className={styles.erro}>{erroSelecionar}</p>} */}
-                <div className={styles.relacao}>
-                  <Input label="Relacao" id="relacao" name="relacao" type="text" value={colaborador.relacao || ''} onChange={handleInputChange} />
-                </div>
-              </div>
-              {/* {opcaoSelecionada && <p>{opcaoSelecionada}</p>} */}
-              <div className={styles.button}>{loading ? <Button disabled>Cadastrando....</Button> : <Button>Cadastrar</Button>}</div>
-
-              {error && <p className={styles.erro}>{error}</p>}
-            </form>
+      <div className={styles.estrutura}>
+        <div className={styles.detalhe}>
+          <Detalhe />
+        </div>
+        <main className={styles.content}>
+          <div className={styles.titulo}>
+            <DetalheUpdade />
+            <h1>Informações / Update - Colaborador</h1>
           </div>
-        )}
+          <section className={styles.section}>
+            {loading ? (
+              <p>Carregando...</p>
+            ) : (
+              <form onSubmit={handleSubmit} className={styles.form}>
+                <div>
+                  <Input label="Nome" id="nome" name="nome" type="text" value={colaborador.nome || ''} onChange={handleInputChange} />
+                  <div className={styles.dados1}>
+                    <Input label="CPF" id="cpf" name="cpf" type="text" value={colaborador.cpf || ''} onChange={handleInputChange} />
+                    <Input label="RG" id="rg" name="rg" type="text" value={colaborador.rg || ''} onChange={handleInputChange} />
+                    <Input label="CEP" id="cep" name="cep" type="text" value={colaborador.cep || ''} onChange={handleInputChange} />
+                    <Input label="Estado" id="estado" name="estado" type="text" value={colaborador.estado || ''} onChange={handleInputChange} />
+                  </div>
+                  <Input label="Endereco" id="endereco" name="endereco" type="text" value={colaborador.endereco || ''} onChange={handleInputChange} />
+                  <div className={styles.dados2}>
+                    <Input label="Bairro" id="bairro" name="bairro" type="text" value={colaborador.bairro || ''} onChange={handleInputChange} />
+                    <Input label="Número" id="numero" name="numero" type="text" value={colaborador.numero || ''} onChange={handleInputChange} />
+                    <Input label="Cidade" id="cidade" name="cidade" type="text" value={colaborador.cidade || ''} onChange={handleInputChange} />
+                  </div>
+                </div>
+                <div>
+                  <Input label="Telefone" id="telefone" name="telefone" type="text" value={colaborador.telefone || ''} onChange={handleInputChange} />
+                  <Input label="Login" id="login" name="login" type="text" value={colaborador.login || ''} onChange={handleInputChange} />
+                  <Input label="Gestor" id="gestor" name="gestor" type="text" value={colaborador.gestor || ''} onChange={handleInputChange} />
+                  <Input label="Setor" id="setor" name="setor" type="text" value={colaborador.setor || ''} onChange={handleInputChange} />
+                  <label htmlFor="lecioneoOp" className={styles.local}>
+                    Selecione Local
+                    <select className={styles.selection} id="lecioneoOp" name="lecioneoOp" defaultValue="Selecione" onChange={handleInputChange}>
+                      <option value="Selecione" disabled>
+                        {colaborador && colaborador.localsite.nome}
+                      </option>
+                      {locais &&
+                        locais.map((local) => (
+                          <option key={local.id} value={local.id}>
+                            {local.nome}
+                          </option>
+                        ))}
+                    </select>
+                  </label>
+                  {/* {erroSelecionar && <p className={styles.erro}>{erroSelecionar}</p>} */}
+                  <div className={styles.relacao}>
+                    <Input label="Relacao" id="relacao" name="relacao" type="text" value={colaborador.relacao || ''} onChange={handleInputChange} />
+                  </div>
+                </div>
+                <div className={styles.switch}>
+                  <label htmlFor="toggle">
+                    Conta ativa
+                    <input type="checkbox" id="toggle" />
+                    <span className={`${styles.slider} ${styles.round}`}></span>
+                  </label>
+                </div>
+                <div className={styles.button}>{loading ? <Button disabled>Cadastrando....</Button> : <Button>Cadastrar</Button>}</div>
+
+                {error && <p className={styles.erro}>{error}</p>}
+              </form>
+            )}
+          </section>
+        </main>
       </div>
     </>
   )
