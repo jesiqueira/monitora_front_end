@@ -17,6 +17,7 @@ const ColaboradorUpdate = () => {
   const [colaborador, setColaborador] = useState('')
   const [locais, setLocais] = React.useState(null)
   const [selecionado, setSelecionado] = React.useState('')
+  const [isChecked, setChecked] = React.useState(false)
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
   const loginParam = queryParams.get('login')
@@ -29,6 +30,7 @@ const ColaboradorUpdate = () => {
         const response = await colaboradorShow(loginParam)
         // console.log(response)
         setColaborador(response.data)
+        setChecked(response.data.is_ativo)
       } catch (err) {
         // console.log('Erro coooooo: ', error)
       }
@@ -86,6 +88,15 @@ const ColaboradorUpdate = () => {
       }))
     }
   }
+
+  const handleCheckboxChange = () => {
+    setChecked((prevChecked) => !prevChecked)
+    setColaborador((prev) => ({
+      ...prev,
+      is_ativo: !prev.is_ativo,
+    }))
+  }
+
   return (
     <>
       <Head title="Update Colaboradores" description="Páginas para visualizar e atualizar dados dos colaboradores." className={styles.head} />
@@ -144,12 +155,12 @@ const ColaboradorUpdate = () => {
                 </div>
 
                 <div className={styles.toggleContainer}>
-                  <input className={styles.toggle} id="toggle" type="checkbox" />
+                  <input className={styles.toggle} id="toggle" type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
                   <label htmlFor="toggle" className={styles.toggleLabel}></label>
-                  <span className={styles.description}>Conta ativa</span>
+                  <span className={styles.description}>{isChecked ? 'Conta ativa' : 'Conta inativa'}</span>
                 </div>
 
-                <div className={styles.button}>{loading ? <Button disabled>Cadastrando....</Button> : <Button>Cadastrar</Button>}</div>
+                <div className={styles.button}>{loading ? <Button disabled>Cadastrando....</Button> : <Button>Atualizar</Button>}</div>
 
                 {error && <p className={styles.erro}>{error}</p>}
               </form>

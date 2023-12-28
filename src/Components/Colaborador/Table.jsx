@@ -9,13 +9,19 @@ const Table = ({ colaboradores }) => {
   const headers = Object.keys(colaboradores[0])
 
   return (
-    // 
+    //
     <table className={styles.table}>
       <thead>
         <tr>
           {headers.map((header) => {
             if (header === 'is_ativo') {
-              return <th key={header}>ATIVO</th>
+              return (
+                <th key={header}>
+                  <Link to={`/colaborador?sort=${header}`} target="_self">
+                    ATIVO
+                  </Link>
+                </th>
+              )
             } else if (header === 'localsite') {
               return <th key={header}>{header.toUpperCase()}</th>
             } else {

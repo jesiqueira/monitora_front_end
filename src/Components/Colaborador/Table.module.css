@@ -4,11 +4,18 @@ table {
   border-collapse: collapse;
 }
 
-th{
+th {
   text-align: center;
   padding: 10px;
   background: #b1abab;
+  color: black;
 }
+
+th > a,
+td > a {
+  color: black;
+}
+
 table,
 th,
 td {
@@ -20,9 +27,9 @@ td {
   text-align: left;
 }
 
-td{
+td {
   white-space: nowrap; /* Evitar quebra de linha dentro da célula */
-  overflow: hidden;    /* Ocultar conteúdo que ultrapassa a célula */
+  overflow: hidden; /* Ocultar conteúdo que ultrapassa a célula */
   text-overflow: ellipsis; /* Adicionar reticências (...) para indicar conteúdo truncado */
 }
 
