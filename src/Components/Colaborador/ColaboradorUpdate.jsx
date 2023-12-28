@@ -142,13 +142,13 @@ const ColaboradorUpdate = () => {
                     <Input label="Relacao" id="relacao" name="relacao" type="text" value={colaborador.relacao || ''} onChange={handleInputChange} />
                   </div>
                 </div>
-                <div className={styles.switch}>
-                  <label htmlFor="toggle">
-                    Conta ativa
-                    <input type="checkbox" id="toggle" />
-                    <span className={`${styles.slider} ${styles.round}`}></span>
-                  </label>
+
+                <div className={styles.toggleContainer}>
+                  <input className={styles.toggle} id="toggle" type="checkbox" />
+                  <label htmlFor="toggle" className={styles.toggleLabel}></label>
+                  <span className={styles.description}>Conta ativa</span>
                 </div>
+
                 <div className={styles.button}>{loading ? <Button disabled>Cadastrando....</Button> : <Button>Cadastrar</Button>}</div>
 
                 {error && <p className={styles.erro}>{error}</p>}
