@@ -1,0 +1,16 @@
+.estrutura {
+  display: grid;
+  grid-template-areas:
+    'detalhe detalhe'
+    'article article';
+  /* justify-content: center; */
+}
+
+.detalhe {
+  /* background: rebeccapurple; */
+  grid-area: detalhe;
+  display: grid;
+  justify-items: end;
+  margin: 50px 120px 0 0;
+  max-height: 52px;
+}
