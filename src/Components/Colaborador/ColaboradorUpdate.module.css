@@ -83,6 +83,7 @@
   border-radius: 0.4rem;
   background: #eee;
   transition: 0.1s;
+  color: #686060;
 }
 
 .selection:focus,
