@@ -1,4 +1,5 @@
 import React from 'react'
+import Head from '../Helper/Head'
 import { useNavigate } from 'react-router-dom'
 import styles from './UsuarioCadastrar.module.css'
 import { UserContext } from '../../Contexts/UserContext'
@@ -95,6 +96,7 @@ const UsuarioCadastrar = () => {
   return (
     <div className={styles.estrutura}>
       <FecharMenu menuToClose={menuClose} />
+      <Head title="Cadastro" description="Página de cadastro de usuário do sistema" />
       <div className={styles.detalhe}>
         <Detalhe />
       </div>
