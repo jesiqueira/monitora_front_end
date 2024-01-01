@@ -12,11 +12,13 @@ import Button from '../Forms/Button'
 import Input from '../Forms/Input'
 import Check from '../Forms/Check'
 import Table from '../Helper/Table'
+import { getUsuarios } from '../../services/api/usuario/api'
 
 const UsuariosListar = () => {
   const { setMenuadmin, setMenusair } = React.useContext(UserContext)
   const [admCheck, setAdmCheck] = React.useState(false)
   const [contaAtivaCheck, setContaAtivaCheck] = React.useState(false)
+  const [users, setUsers] = React.useState('')
   const menuClose = [setMenusair, setMenuadmin]
 
   const handleAdmCheckChange = () => {
@@ -25,6 +27,23 @@ const UsuariosListar = () => {
   const handleContaAtivaCheckChange = () => {
     setContaAtivaCheck((prevChecked) => !prevChecked)
   }
+
+  React.useEffect(() => {
+    const listarUsuario = async () => {
+      try {
+        const response = await getUsuarios()
+        if (response.status === 200) {
+          // console.log(response.data)
+          setUsers(response.data)
+        } else {
+          throw new Error(response.data.error)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    listarUsuario()
+  }, [])
   return (
     <>
       <FecharMenu menuToClose={menuClose} />
@@ -50,7 +69,7 @@ const UsuariosListar = () => {
       <hr className={styles.hr} />
       <section className={styles.sectionTeble}>
         <div className={styles.lista}>
-          <Table />
+          <Table datas={users} />
           <div className={styles.visualizarDados}>
             <div className={styles.dadosPerfil}>
               <div className={styles.info}>
