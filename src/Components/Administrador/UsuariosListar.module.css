@@ -1,4 +1,4 @@
-.estrutura {
+.section {
   display: grid;
   grid-template-areas:
     'detalhe detalhe'
@@ -94,11 +94,10 @@
   height: 3px;
 }
 
-.article {
+.sectionTeble {
   grid-area: article;
   background: #ebebeb;
-  height: 300px;
-  margin-top: 50px;
+  /* margin: 50px 0px; */
 }
 
 .lista {
@@ -106,4 +105,89 @@
   grid-template-columns: 3fr 1fr;
   width: 1600px;
   margin: 0 auto;
+  column-gap: 10px;
+}
+
+.visualizarDados {
+  display: grid;
+  grid-template-areas:
+    'dadosPerfil'
+    'form';
+  grid-auto-rows: 1fr 2fr;
+  background: #d9d9d9;
+  margin-top: 30px;
+  border-radius: 5px;
+  padding: 20px;
+  max-height: 500px;
+}
+
+.dadosPerfil {
+  grid-area: dadosPerfil;
+  /* background: #bea1a1; */
+}
+
+.info {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.info_foto {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #b5b5b5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info div:last-child {
+  margin-top: 15px;
+}
+
+.info div:last-child h1 {
+  font-size: 1.2rem;
+}
+
+.info div:last-child h2 {
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
+.info div:last-child h3 {
+  font-size: 0.8rem;
+  margin-top: 5px;
+}
+
+.hrInfo {
+  height: 3px;
+  margin-top: 20px;
+}
+hr {
+  display: block;
+  margin: 20px 0;
+}
+
+.form {
+  grid-area: form;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background: #e3e1e1;
+  text-align: center;
+}
+.password {
+  text-align: left;
+  margin-top: 10px;
+}
+.form button {
+  max-width: 100px;
+  margin: 10px 0 0 190px;
+  background: #b47162;
+  color: #47261f;
+}
+
+.form button:focus,
+.form button:hover {
+  color: white;
 }
