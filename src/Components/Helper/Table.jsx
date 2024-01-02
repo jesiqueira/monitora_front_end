@@ -2,7 +2,28 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styles from './Table.module.css'
 
-const Table = ({ datas }) => {
+const Table = ({ datas, onUserChange }) => {
+  const [user, setUser] = React.useState('')
+
+  React.useEffect(() => {
+    if (datas) {
+      const usuario = Object.values(datas[0])
+      // console.log(usuario)
+      const objUser = {
+        id: usuario[0],
+        nome: usuario[1],
+        login: usuario[2],
+        is_admin: usuario[3],
+        is_ativo: usuario[4],
+      }
+      setUser(objUser)
+    }
+  }, [datas])
+
+  React.useEffect(() => {
+    onUserChange(user)
+  }, [user, onUserChange])
+
   if (!datas || datas.length === 0) {
     return <p>Nenhum Dados encontrado.</p>
   }
@@ -15,6 +36,8 @@ const Table = ({ datas }) => {
     const dataFormatada = `${dia} /${mes} /${ano}`
     return dataFormatada
   }
+
+  // console.log(user)
 
   const headers = Object.keys(datas[0])
   return (
@@ -31,7 +54,7 @@ const Table = ({ datas }) => {
             if (header === 'is_admin') {
               return (
                 <th key={header}>
-                  <Link to={`/link?sort=${header}`} target="_self">
+                  <Link to={`/admin?sort=${header}`} target="_self">
                     PERMISSÃO
                   </Link>
                 </th>
@@ -40,7 +63,7 @@ const Table = ({ datas }) => {
             if (header === 'createdAt') {
               return (
                 <th key={header}>
-                  <Link to={`/link?sort=${header}`} target="_self">
+                  <Link to={`/admin?sort=${header}`} target="_self">
                     CRIADO-EM
                   </Link>
                 </th>
@@ -49,7 +72,7 @@ const Table = ({ datas }) => {
             if (header === 'is_ativo') {
               return (
                 <th key={header}>
-                  <Link to={`/link?sort=${header}`} target="_self">
+                  <Link to={`/admin?sort=${header}`} target="_self">
                     CONTA
                   </Link>
                 </th>
@@ -59,7 +82,7 @@ const Table = ({ datas }) => {
             } else {
               return (
                 <th key={header}>
-                  <Link to={`/link?sort=${header}`} target="_self">
+                  <Link to={`/admin?sort=${header}`} target="_self">
                     {header.toUpperCase()}
                   </Link>
                 </th>

@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './UsuariosListar.module.css'
 import Head from '../Helper/Head'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { UserContext } from '../../Contexts/UserContext'
 import FecharMenu from '../Helper/FecharMenu'
 import { ReactComponent as Detalhe } from '../../Assets/detalhe.svg'
@@ -12,6 +12,7 @@ import Button from '../Forms/Button'
 import Input from '../Forms/Input'
 import Check from '../Forms/Check'
 import Table from '../Helper/Table'
+import Paginacao from '../Helper/Paginacao'
 import { getUsuarios } from '../../services/api/usuario/api'
 
 const UsuariosListar = () => {
@@ -19,7 +20,14 @@ const UsuariosListar = () => {
   const [admCheck, setAdmCheck] = React.useState(false)
   const [contaAtivaCheck, setContaAtivaCheck] = React.useState(false)
   const [users, setUsers] = React.useState('')
+  const [userAtual, setUserAtual] = React.useState('')
+  const [tatalIntemInDataBase, setTotalIntemInDataBase] = React.useState(0)
+  const [currentPage, setCurrentPage] = React.useState(1)
   const menuClose = [setMenusair, setMenuadmin]
+  const intemsPorPage = 25
+  const location = useLocation()
+  const queryParams = new URLSearchParams(location.search)
+  const sort = queryParams.get('sort') || 'nome'
 
   const handleAdmCheckChange = () => {
     setAdmCheck((prevChecked) => !prevChecked)
@@ -27,13 +35,23 @@ const UsuariosListar = () => {
   const handleContaAtivaCheckChange = () => {
     setContaAtivaCheck((prevChecked) => !prevChecked)
   }
+  const handlePageChange = (page) => {
+    setCurrentPage(page)
+  }
+
+  const handleUserAtual = (user) => {
+    setUserAtual(user)
+  }
 
   React.useEffect(() => {
-    const listarUsuario = async () => {
+    const listarUsuario = async (sort, page) => {
       try {
-        const response = await getUsuarios()
+        const response = await getUsuarios(sort, page)
         if (response.status === 200) {
-          // console.log(response.data)
+          // Acesso ao cabeçalho 'X-Total-Count' da resposta
+          const totalCountFromHeader = response.headers.get('TotalUsers')
+          setTotalIntemInDataBase(parseInt(totalCountFromHeader) || 0)
+          // console.log(totalCountFromHeader)
           setUsers(response.data)
         } else {
           throw new Error(response.data.error)
@@ -42,8 +60,14 @@ const UsuariosListar = () => {
         console.log(error)
       }
     }
-    listarUsuario()
-  }, [])
+    listarUsuario(sort, currentPage)
+  }, [sort, currentPage])
+
+  React.useEffect(()=>{
+    setAdmCheck(userAtual.is_admin)
+    setContaAtivaCheck(userAtual.is_ativo)
+  },[userAtual])
+
   return (
     <>
       <FecharMenu menuToClose={menuClose} />
@@ -69,7 +93,12 @@ const UsuariosListar = () => {
       <hr className={styles.hr} />
       <section className={styles.sectionTeble}>
         <div className={styles.lista}>
-          <Table datas={users} />
+          <div>
+            <Table datas={users} onUserChange={handleUserAtual} />
+            <div className={styles.paginacao}>
+              <Paginacao totalItems={tatalIntemInDataBase} itemsPorPagina={intemsPorPage} onPageChange={handlePageChange} />
+            </div>
+          </div>
           <div className={styles.visualizarDados}>
             <div className={styles.dadosPerfil}>
               <div className={styles.info}>
@@ -77,12 +106,13 @@ const UsuariosListar = () => {
                   <Penson />
                 </div>
                 <div>
-                  <h1>Jose Edmar de Siqueira</h1>
-                  <h2>
+                  <h1>{userAtual.nome}</h1>
+                  {/* <h2>
                     <span>Gestor: </span>Leonardo Vello
-                  </h2>
+                  </h2> */}
                   <h3>
-                    <span>Login: </span>jesiqueira
+                    <span>Login: </span>
+                    {userAtual.login}
                   </h3>
                 </div>
               </div>

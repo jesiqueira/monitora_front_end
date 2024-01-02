@@ -146,7 +146,7 @@
 }
 
 .info div:last-child h1 {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
 .info div:last-child h2 {
@@ -155,7 +155,7 @@
 }
 
 .info div:last-child h3 {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   margin-top: 5px;
 }
 
@@ -190,4 +190,12 @@ hr {
 .form button:focus,
 .form button:hover {
   color: white;
+}
+
+.paginacao {
+  grid-area: paginacao;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 150px;
 }
