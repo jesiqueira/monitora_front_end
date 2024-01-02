@@ -21,6 +21,7 @@ const UsuariosListar = () => {
   const [contaAtivaCheck, setContaAtivaCheck] = React.useState(false)
   const [users, setUsers] = React.useState('')
   const [userAtual, setUserAtual] = React.useState('')
+  const [useForm, setUseForm] = React.useState('')
   const [tatalIntemInDataBase, setTotalIntemInDataBase] = React.useState(0)
   const [currentPage, setCurrentPage] = React.useState(1)
   const menuClose = [setMenusair, setMenuadmin]
@@ -43,6 +44,21 @@ const UsuariosListar = () => {
     setUserAtual(user)
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    console.log('Prevenido')
+    console.log(userAtual)
+    // if(){
+    //   console.log();
+    // }
+    setUseForm({
+      id: userAtual.id,
+      is_admin: admCheck,
+      is_ativo: contaAtivaCheck,
+    })
+  }
+
   React.useEffect(() => {
     const listarUsuario = async (sort, page) => {
       try {
@@ -63,10 +79,10 @@ const UsuariosListar = () => {
     listarUsuario(sort, currentPage)
   }, [sort, currentPage])
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     setAdmCheck(userAtual.is_admin)
     setContaAtivaCheck(userAtual.is_ativo)
-  },[userAtual])
+  }, [userAtual])
 
   return (
     <>
@@ -118,7 +134,7 @@ const UsuariosListar = () => {
               </div>
               <hr className={styles.hrInfo} />
             </div>
-            <form className={styles.form}>
+            <form className={styles.form} onSubmit={handleSubmit}>
               <h3>Permissões</h3>
               <hr />
               <Check
