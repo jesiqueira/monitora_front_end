@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './UsuariosListar.module.css'
 import Head from '../Helper/Head'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { UserContext } from '../../Contexts/UserContext'
 import FecharMenu from '../Helper/FecharMenu'
 import { ReactComponent as Detalhe } from '../../Assets/detalhe.svg'
@@ -13,7 +13,7 @@ import Input from '../Forms/Input'
 import Check from '../Forms/Check'
 import Table from '../Helper/Table'
 import Paginacao from '../Helper/Paginacao'
-import { getUsuarios } from '../../services/api/usuario/api'
+import { getUsuarios, update } from '../../services/api/usuario/api'
 
 const UsuariosListar = () => {
   const { setMenuadmin, setMenusair } = React.useContext(UserContext)
@@ -22,6 +22,7 @@ const UsuariosListar = () => {
   const [users, setUsers] = React.useState('')
   const [userAtual, setUserAtual] = React.useState('')
   const [useForm, setUseForm] = React.useState('')
+  const [senha, setSenha] = React.useState('')
   const [tatalIntemInDataBase, setTotalIntemInDataBase] = React.useState(0)
   const [currentPage, setCurrentPage] = React.useState(1)
   const menuClose = [setMenusair, setMenuadmin]
@@ -29,6 +30,7 @@ const UsuariosListar = () => {
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
   const sort = queryParams.get('sort') || 'nome'
+  const navigate = useNavigate()
 
   const handleAdmCheckChange = () => {
     setAdmCheck((prevChecked) => !prevChecked)
@@ -47,16 +49,18 @@ const UsuariosListar = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    console.log('Prevenido')
-    console.log(userAtual)
-    // if(){
-    //   console.log();
-    // }
-    setUseForm({
-      id: userAtual.id,
-      is_admin: admCheck,
-      is_ativo: contaAtivaCheck,
-    })
+    if (senha) {
+      setUseForm({
+        is_admin: admCheck,
+        is_ativo: contaAtivaCheck,
+        senha_virtual: senha,
+      })
+    } else {
+      setUseForm({
+        is_admin: admCheck,
+        is_ativo: contaAtivaCheck,
+      })
+    }
   }
 
   React.useEffect(() => {
@@ -83,6 +87,25 @@ const UsuariosListar = () => {
     setAdmCheck(userAtual.is_admin)
     setContaAtivaCheck(userAtual.is_ativo)
   }, [userAtual])
+
+  React.useEffect(() => {
+    const atualizar = async () => {
+      if (useForm && userAtual) {
+        try {
+          const response = await update(userAtual.id, useForm)
+          if (response.status === 200) {
+            navigate('/')
+            // window.location.reload()
+          }
+        } catch (error) {
+          console.log(error)
+        } finally {
+          setSenha('')
+        }
+      }
+    }
+    atualizar()
+  }, [useForm, userAtual, navigate])
 
   return (
     <>
@@ -152,7 +175,7 @@ const UsuariosListar = () => {
                 handleCheckboxChange={handleContaAtivaCheckChange}
               />
               <div className={styles.password}>
-                <Input label="Nova senha" name="password" />
+                <Input label="Nova senha" name="password" type="password" onChange={(event) => setSenha(event.target.value)} />
               </div>
               <Button className={styles.button}>Atualizar</Button>
             </form>
