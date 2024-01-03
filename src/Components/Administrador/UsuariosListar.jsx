@@ -11,7 +11,7 @@ import { ReactComponent as Penson } from '../../Assets/person.svg'
 import Button from '../Forms/Button'
 import Input from '../Forms/Input'
 import Check from '../Forms/Check'
-import Table from '../Helper/Table'
+import Table from './Table'
 import Paginacao from '../Helper/Paginacao'
 import { getUsuarios, update } from '../../services/api/usuario/api'
 
@@ -162,15 +162,15 @@ const UsuariosListar = () => {
               <hr />
               <Check
                 name="adm"
-                textChecked="Conta Administrador"
-                textNotChecked="Conta normal"
+                textChecked="Administrador"
+                textNotChecked="Usuário"
                 isChecked={admCheck}
                 handleCheckboxChange={handleAdmCheckChange}
               />
               <Check
                 name="conta"
                 textChecked="Conta Ativa"
-                textNotChecked="Conta desativada"
+                textNotChecked="Conta inativada"
                 isChecked={contaAtivaCheck}
                 handleCheckboxChange={handleContaAtivaCheckChange}
               />
