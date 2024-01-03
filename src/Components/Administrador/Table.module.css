@@ -47,3 +47,26 @@ tr:nth-child(odd) {
 tr:nth-child(even) {
   background-color: #ffffff; /* Cor de fundo para linhas pares */
 }
+
+@media only screen and (max-width: 1200px) {
+  table {
+    overflow-x: auto;
+    display: block;
+  }
+
+  th,
+  td {
+    white-space: nowrap; /*Evita que o texto quebre em várias linhas*/
+    max-width: 100%; /* Garante que o conteúdo não ultrapasse a largura da tela */
+  }
+
+  tbody,
+  thead {
+    display: block;
+  }
+
+  tr {
+    margin-bottom: 10px; /* Adapte conforme necessário para melhor espaçamento entre linhas */
+    display: block;
+  }
+}
