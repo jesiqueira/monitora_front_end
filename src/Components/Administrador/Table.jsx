@@ -38,6 +38,10 @@ const Table = ({ datas, onUserChange }) => {
   }
 
   // console.log(user)
+  const handleSelecione = ({ target }) => {
+    const dadosUser = datas.find((user) => user.login === target.textContent)
+    setUser(dadosUser)
+  }
 
   const headers = Object.keys(datas[0])
   return (
@@ -103,8 +107,8 @@ const Table = ({ datas, onUserChange }) => {
               }
               if (header === 'login') {
                 return (
-                  <td key={header}>
-                    <Link to={`update?login=${user.login}`}>{user[header]}</Link>{' '}
+                  <td className={styles.handleSelecione} key={header} onClick={handleSelecione}>
+                    {user[header]}
                   </td>
                 )
               }

@@ -34,6 +34,10 @@ td {
   text-overflow: ellipsis; /* Adicionar reticências (...) para indicar conteúdo truncado */
 }
 
+.handleSelecione {
+  cursor: pointer;
+}
+
 /* Estilo para linhas ímpares */
 tr:nth-child(odd) {
   background-color: #f2f2f2; /* Cor de fundo para linhas ímpares */
