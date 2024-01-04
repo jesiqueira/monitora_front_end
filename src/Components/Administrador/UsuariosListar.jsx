@@ -2,8 +2,6 @@ import React from 'react'
 import styles from './UsuariosListar.module.css'
 import Head from '../Helper/Head'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { UserContext } from '../../Contexts/UserContext'
-import FecharMenu from '../Helper/FecharMenu'
 import { ReactComponent as Detalhe } from '../../Assets/detalhe.svg'
 import { ReactComponent as Detalhe1 } from '../../Assets/adm_user_listar.svg'
 import { ReactComponent as DelatheAddUser } from '../../Assets/adm_user_add.svg'
@@ -16,7 +14,6 @@ import Paginacao from '../Helper/Paginacao'
 import { getUsuarios, update } from '../../services/api/usuario/api'
 
 const UsuariosListar = () => {
-  const { setMenuadmin, setMenusair } = React.useContext(UserContext)
   const [admCheck, setAdmCheck] = React.useState(false)
   const [contaAtivaCheck, setContaAtivaCheck] = React.useState(false)
   const [users, setUsers] = React.useState('')
@@ -25,7 +22,6 @@ const UsuariosListar = () => {
   const [senha, setSenha] = React.useState('')
   const [tatalIntemInDataBase, setTotalIntemInDataBase] = React.useState(0)
   const [currentPage, setCurrentPage] = React.useState(1)
-  const menuClose = [setMenusair, setMenuadmin]
   const intemsPorPage = 25
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
@@ -109,7 +105,6 @@ const UsuariosListar = () => {
 
   return (
     <>
-      <FecharMenu menuToClose={menuClose} />
       <Head title="Usuários" description="Página para listar todos os usuários do sistema." />
       <section className={styles.section}>
         <div className={styles.detalhe}>

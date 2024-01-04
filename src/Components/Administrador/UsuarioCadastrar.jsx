@@ -2,8 +2,6 @@ import React from 'react'
 import Head from '../Helper/Head'
 import { useNavigate } from 'react-router-dom'
 import styles from './UsuarioCadastrar.module.css'
-import { UserContext } from '../../Contexts/UserContext'
-import FecharMenu from '../Helper/FecharMenu'
 import { ReactComponent as Addusers } from '../../Assets/add-user.svg'
 import { ReactComponent as Detalhe } from '../../Assets/detalhe.svg'
 import Input from '../Forms/Input'
@@ -14,8 +12,6 @@ import { getLocalSites } from '../../services/api/localSite'
 import { create } from '../../services/api/usuario/api'
 
 const UsuarioCadastrar = () => {
-  const { setMenuadmin, setMenusair } = React.useContext(UserContext)
-  const menuClose = [setMenusair, setMenuadmin]
   const [select, setSelect] = React.useState('')
   const [locais, setLocal] = React.useState(null)
   const [isChecked, setChecked] = React.useState(false)
@@ -95,7 +91,7 @@ const UsuarioCadastrar = () => {
 
   return (
     <div className={styles.estrutura}>
-      <FecharMenu menuToClose={menuClose} />
+      {/* <FecharMenu menuToClose={menuClose} /> */}
       <Head title="Cadastro" description="Página de cadastro de usuário do sistema" />
       <div className={styles.detalhe}>
         <Detalhe />

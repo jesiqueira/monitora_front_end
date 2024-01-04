@@ -7,8 +7,6 @@ import { ReactComponent as Pdf } from '../../Assets/pdf.svg'
 import { ReactComponent as Excell } from '../../Assets/excell.svg'
 import { ReactComponent as Detalhe1 } from '../../Assets/colDetalhe.svg'
 import { ReactComponent as AddColaborador } from '../../Assets/addcolaborador.svg'
-import { UserContext } from '../../Contexts/UserContext'
-import FecharMenu from '../Helper/FecharMenu'
 import Input from '../Forms/Input'
 import Button from '../Forms/Button'
 import Table from './Table'
@@ -23,7 +21,6 @@ const Colaborador = () => {
   const sort = queryParams.get('sort') || 'nome'
 
   const [colaboradores, setColaboradores] = React.useState('')
-  const { setMenuadmin, setMenusair } = React.useContext(UserContext)
   const [loading, setLoading] = React.useState(false)
   const [currentPage, setCurrentPage] = React.useState(1)
   const [tatalIntemInDataBase, setTotalIntemInDataBase] = React.useState(0)
@@ -31,7 +28,6 @@ const Colaborador = () => {
   const [erro, setErro] = React.useState(null)
   const [exportPDF, setExportPDF] = React.useState(false)
   const [exportXLSX, setExportXLSX] = React.useState(false)
-  const menuClose = [setMenusair, setMenuadmin]
   const intemsPorPage = 25
 
   React.useEffect(() => {
@@ -97,7 +93,6 @@ const Colaborador = () => {
 
   return (
     <>
-      <FecharMenu menuToClose={menuClose} />
       <Head title="Colaboradores" description="Páginas com todos os colaboradores das empresa." className={styles.head} />
       <div className={styles.estrutura}>
         <div className={styles.detalhe}>

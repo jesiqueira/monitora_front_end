@@ -1,6 +1,5 @@
 import axios from 'axios'
 
 export const api = axios.create({
-  // baseURL: 'http://localhost:5000',
-  baseURL: `http://localhost:${process.env.REACT_APP_PORT}`,
+  baseURL: `${process.env.REACT_APP_HOST_SERVER}:${process.env.REACT_APP_PORTA_SERVER}`,
 })
