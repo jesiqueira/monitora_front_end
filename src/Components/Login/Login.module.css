@@ -21,3 +21,29 @@
   font-size: 0.875rem;
   margin-top: 1rem;
 }
+
+/* MEDIA */
+@media (max-width: 69rem) {
+  .main{
+    padding: 0px;
+  }
+  .principal svg {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+@media (max-width: 62rem) {
+  .principal svg {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 29rem) {
+  .principal svg {
+    width: 210px;
+    height: 210px;
+  }
+}
+
