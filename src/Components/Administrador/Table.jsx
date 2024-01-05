@@ -45,59 +45,10 @@ const Table = ({ datas, onUserChange }) => {
 
   const headers = Object.keys(datas[0])
   return (
-    <table className={styles.table}>
-      <thead>
-        <tr>
-          {headers.map((header) => {
-            if (header === 'id') {
-              return null
-            }
-            if (header === 'updatedAt') {
-              return null
-            }
-            if (header === 'is_admin') {
-              return (
-                <th key={header}>
-                  <Link to={`/admin?sort=${header}`} target="_self">
-                    PERMISSÃO
-                  </Link>
-                </th>
-              )
-            }
-            if (header === 'createdAt') {
-              return (
-                <th key={header}>
-                  <Link to={`/admin?sort=${header}`} target="_self">
-                    CRIADO-EM
-                  </Link>
-                </th>
-              )
-            }
-            if (header === 'is_ativo') {
-              return (
-                <th key={header}>
-                  <Link to={`/admin?sort=${header}`} target="_self">
-                    CONTA
-                  </Link>
-                </th>
-              )
-            } else if (header === 'localsite') {
-              return <th key={header}>{header.toUpperCase()}</th>
-            } else {
-              return (
-                <th key={header}>
-                  <Link to={`/admin?sort=${header}`} target="_self">
-                    {header.toUpperCase()}
-                  </Link>
-                </th>
-              )
-            }
-          })}
-        </tr>
-      </thead>
-      <tbody>
-        {datas.map((user) => (
-          <tr key={user.login}>
+    <div className={styles.tableContainer}>
+      <table className={styles.table}>
+        <thead>
+          <tr>
             {headers.map((header) => {
               if (header === 'id') {
                 return null
@@ -105,37 +56,88 @@ const Table = ({ datas, onUserChange }) => {
               if (header === 'updatedAt') {
                 return null
               }
-              if (header === 'login') {
-                return (
-                  <td className={styles.handleSelecione} key={header} onClick={handleSelecione}>
-                    {user[header]}
-                  </td>
-                )
-              }
               if (header === 'is_admin') {
-                return <td key={header}>{user[header] ? 'Administrador' : 'Usuário'}</td>
-              }
-              if (header === 'is_ativo') {
-                return <td key={header}>{user[header] ? 'Ativa' : 'Inativo'}</td>
+                return (
+                  <th key={header}>
+                    <Link to={`/admin?sort=${header}`} target="_self">
+                      PERMISSÃO
+                    </Link>
+                  </th>
+                )
               }
               if (header === 'createdAt') {
-                return <td key={header}>{dataFormatada(user[header])}</td>
-              } else if (header === 'localsite') {
-                // Se o header for 'localsite', imprima os dados específicos
                 return (
-                  <td key={header}>
-                    {/* ID: {user.localsite.id}, Nome:  */}
-                    {user.localsite.nome}
-                  </td>
+                  <th key={header}>
+                    <Link to={`/admin?sort=${header}`} target="_self">
+                      CRIADO-EM
+                    </Link>
+                  </th>
                 )
+              }
+              if (header === 'is_ativo') {
+                return (
+                  <th key={header}>
+                    <Link to={`/admin?sort=${header}`} target="_self">
+                      CONTA
+                    </Link>
+                  </th>
+                )
+              } else if (header === 'localsite') {
+                return <th key={header}>{header.toUpperCase()}</th>
               } else {
-                return <td key={header}>{user[header]}</td>
+                return (
+                  <th key={header}>
+                    <Link to={`/admin?sort=${header}`} target="_self">
+                      {header.toUpperCase()}
+                    </Link>
+                  </th>
+                )
               }
             })}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {datas.map((user) => (
+            <tr key={user.login}>
+              {headers.map((header) => {
+                if (header === 'id') {
+                  return null
+                }
+                if (header === 'updatedAt') {
+                  return null
+                }
+                if (header === 'login') {
+                  return (
+                    <td className={styles.handleSelecione} key={header} onClick={handleSelecione}>
+                      {user[header]}
+                    </td>
+                  )
+                }
+                if (header === 'is_admin') {
+                  return <td key={header}>{user[header] ? 'Administrador' : 'Usuário'}</td>
+                }
+                if (header === 'is_ativo') {
+                  return <td key={header}>{user[header] ? 'Ativa' : 'Inativo'}</td>
+                }
+                if (header === 'createdAt') {
+                  return <td key={header}>{dataFormatada(user[header])}</td>
+                } else if (header === 'localsite') {
+                  // Se o header for 'localsite', imprima os dados específicos
+                  return (
+                    <td key={header}>
+                      {/* ID: {user.localsite.id}, Nome:  */}
+                      {user.localsite.nome}
+                    </td>
+                  )
+                } else {
+                  return <td key={header}>{user[header]}</td>
+                }
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   )
 }
 

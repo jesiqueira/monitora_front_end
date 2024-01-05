@@ -125,8 +125,9 @@ const UsuariosListar = () => {
         </div>
       </section>
       <hr className={styles.hr} />
-      <section className={styles.sectionTeble}>
+      <section className={styles.sectionTable}>
         <div className={styles.lista}>
+          {/* className={styles.tableContainer} */}
           <div>
             <Table datas={users} onUserChange={handleUserAtual} />
             <div className={styles.paginacao}>

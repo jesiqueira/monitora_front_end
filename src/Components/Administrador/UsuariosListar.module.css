@@ -3,16 +3,14 @@
   grid-template-areas:
     'detalhe detalhe'
     'titulo titulo';
-  width: 1600px;
   margin: 0 auto;
-  /* background: hotpink; */
 }
 
 .detalhe {
   grid-area: detalhe;
   display: grid;
   justify-content: end;
-  margin: 50px 0;
+  margin: 50px 50px 50px 0px;
   max-height: 52px;
 }
 
@@ -24,12 +22,12 @@
   grid-area: titulo;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  margin: 0 50px;
 }
 
 .titulo div:first-child {
   display: flex;
   align-items: center;
-  /* margin-left: 10px; */
   min-width: 300px;
 }
 
@@ -42,14 +40,12 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  white-space: nowrap;
 }
 
 .titulo div:last-child a {
   list-style: none;
   color: black;
-}
-
-.titulo div:last-child a {
   font-size: 1.8rem;
 }
 
@@ -94,17 +90,15 @@
   height: 3px;
 }
 
-.sectionTeble {
+.sectionTable {
   grid-area: article;
   background: #ebebeb;
-  /* margin: 50px 0px; */
+  margin: 0px auto 150px auto;
 }
 
 .lista {
   display: grid;
   grid-template-columns: 3fr 1fr;
-  width: 1600px;
-  margin: 0 auto;
   column-gap: 10px;
 }
 
@@ -115,16 +109,16 @@
     'form';
   grid-auto-rows: 1fr 2fr;
   background: #d9d9d9;
-  margin: 30px 0 150px 0;
+  margin: 30px 0 50px 0;
   border-radius: 5px;
   padding: 20px;
   max-height: 500px;
   max-width: 400px;
+  justify-items: center;
 }
 
 .dadosPerfil {
   grid-area: dadosPerfil;
-  /* background: #bea1a1; */
 }
 
 .info {
@@ -144,10 +138,12 @@
 
 .info div:last-child {
   margin-top: 15px;
+  margin-left: 10px;
 }
 
 .info div:last-child h1 {
   font-size: 1.3rem;
+  width: 15rem;
 }
 
 .info div:last-child h2 {
@@ -183,7 +179,6 @@ hr {
 }
 .form button {
   max-width: 100px;
-  margin: 10px 0 0 190px;
   background: #b47162;
   color: #47261f;
 }
@@ -199,4 +194,186 @@ hr {
   justify-content: center;
   align-items: center;
   margin-bottom: 150px;
+}
+
+/*MEDIAS*/
+
+@media only screen and (max-width: 95rem) {
+  .visualizarDados {
+    min-width: 300px;
+  }
+
+  .info div:last-child h1 {
+    font-size: 1rem;
+    width: auto;
+  }
+}
+
+@media (max-width: 87rem) {
+  .hr {
+    width: 1040px;
+    margin: 33px auto;
+  }
+}
+
+@media (max-width: 77rem) {
+  .titulo div:first-child > h1 {
+    font-size: 2rem;
+    margin-left: 15px;
+  }
+
+  .titulo div:last-child a {
+    font-size: 1.5rem;
+  }
+
+  .titulo div:last-child a + input {
+    margin-left: 45px;
+  }
+  .hr {
+    width: 866px;
+    margin: 45px auto;
+  }
+}
+
+@media (max-width: 70rem) {
+  .titulo div:last-child input {
+    font-size: 0.8rem;
+    max-width: 200px;
+  }
+
+  .titulo div:last-child input + button {
+    font-size: 0.8rem;
+    min-width: 6rem;
+  }
+  .hr {
+    width: 697px;
+    margin: 40px auto;
+  }
+}
+
+@media (max-width: 62rem) {
+  .titulo div:first-child > h1 {
+    font-size: 1.5rem;
+  }
+
+  .titulo div:last-child a + input {
+    margin-left: 35px;
+  }
+  .hr {
+    width: 650px;
+    margin: 33px auto;
+  }
+}
+
+@media (max-width: 55rem) {
+  .detalhe {
+    display: none;
+  }
+
+  .titulo {
+    grid-template-columns: 1fr;
+    margin-top: 30px;
+  }
+
+  .titulo div:first-child > h1 {
+    font-size: 2.8rem;
+  }
+
+  .titulo div:last-child {
+    justify-content: flex-start;
+    margin-top: 30px;
+  }
+
+  .titulo div:last-child a {
+    list-style: none;
+    color: black;
+    font-size: 2rem;
+  }
+
+  .titulo div:last-child a + input {
+    margin-left: 250px;
+  }
+
+  .titulo div:last-child input {
+    font-size: 1rem;
+  }
+
+  .lista {
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .visualizarDados {
+    margin-bottom: 10px;
+    grid-row: 1;
+    grid-template-areas: 'dadosPerfil form';
+    align-items: center;
+    min-width: 600px;
+  }
+
+  .dadosPerfil {
+    width: 100%;
+  }
+
+  .info div:last-child h1 {
+    font-size: 1rem;
+    width: 150px;
+  }
+
+  .hr {
+    width: 550px;
+  }
+
+  .paginacao {
+    margin-bottom: 10px;
+  }
+
+  .sectionTable {
+    margin-bottom: 70px;
+  }
+}
+
+@media (max-width: 55rem) {
+  .titulo div:last-child a + input {
+    margin-left: 12rem;
+  }
+}
+
+@media (max-width: 49.5rem) {
+  .titulo div:last-child a + input {
+    margin-left: 5rem;
+  }
+}
+
+@media (max-width: 42rem) {
+  .titulo div:last-child a {
+    font-size: 1.3rem;
+  }
+
+  .titulo div:last-child a + input {
+    margin-left: 2rem;
+    background: red;
+  }
+
+  .titulo div:last-child input {
+    margin: 4px 0px;
+    font-size: 1rem;
+    padding: 0.6rem;
+    width: 180px;
+  }
+
+  .info div:last-child h1 {
+    font-size: 1rem;
+    width: 150px;
+  }
+
+  .visualizarDados {
+    align-items: center;
+    min-width: 500px;
+  }
+
+  .hr {
+    width: 400px;
+  }
 }

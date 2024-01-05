@@ -1,8 +1,12 @@
 /* Estilo básico da tabela */
-table {
+.tableContainer {
+  overflow-x: auto;
+  width: 100%;
+}
+.table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 30px;
+  margin: 30px 10px;
 }
 
 th {
@@ -17,6 +21,10 @@ td > a {
   color: black;
 }
 
+th > a:hover {
+  color: rgb(138, 128, 128);
+}
+
 table,
 th,
 td {
@@ -26,12 +34,46 @@ td {
 td {
   padding: 10px;
   text-align: left;
-}
-
-td {
   white-space: nowrap; /* Evitar quebra de linha dentro da célula */
   overflow: hidden; /* Ocultar conteúdo que ultrapassa a célula */
   text-overflow: ellipsis; /* Adicionar reticências (...) para indicar conteúdo truncado */
+}
+
+td:nth-child(1),
+th:nth-child(1) {
+  max-width: 6.25rem;
+  text-overflow: ellipsis; /* adiciona "..." ao final do texto se ele for cortado */
+  white-space: nowrap; /* impede que o texto quebre em várias linhas */
+}
+
+td:nth-child(2),
+th:nth-child(2) {
+  max-width: 3.75rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: rgb(65, 65, 105);
+}
+
+td:nth-child(2):hover {
+  color: rgb(129, 129, 153);
+}
+
+td:nth-child(3),
+th:nth-child(3),
+td:nth-child(5),
+th:nth-child(5),
+td:nth-child(4),
+th:nth-child(4) {
+  max-width: 3.75rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+td:last-child,
+th:last-child {
+  max-width: 6.25rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .handleSelecione {
@@ -48,25 +90,74 @@ tr:nth-child(even) {
   background-color: #ffffff; /* Cor de fundo para linhas pares */
 }
 
-@media only screen and (max-width: 1200px) {
-  table {
+@media only screen and (max-width: 101rem) {
+  .tableContainer {
     overflow-x: auto;
-    display: block;
+    min-width: 1100px;
+  }
+}
+@media only screen and (max-width: 89rem) {
+  .tableContainer {
+    overflow-x: auto;
+    min-width: 50rem;
+  }
+  td:nth-child(4),
+  th:nth-child(4),
+  td:nth-child(5),
+  th:nth-child(5) {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 70rem) {
+  .tableContainer {
+    overflow-x: auto;
+    min-width: 20rem;
+  }
+}
+
+@media (max-width: 55rem) {
+  .tableContainer {
+    overflow-x: auto;
+    min-width: 50rem;
   }
 
-  th,
-  td {
-    white-space: nowrap; /*Evita que o texto quebre em várias linhas*/
-    max-width: 100%; /* Garante que o conteúdo não ultrapasse a largura da tela */
+  td:nth-child(3),
+  th:nth-child(3),
+  td:nth-child(5),
+  th:nth-child(5) {
+    display: table-cell;
+  }
+}
+
+@media (max-width: 55rem) {
+  .tableContainer {
+    min-width: 47rem;
+  }
+}
+@media (max-width: 49.5rem) {
+  .tableContainer {
+    min-width: 40rem;
+  }
+  td:nth-child(3),
+  th:nth-child(3),
+  td:nth-child(5),
+  th:nth-child(5) {
+    max-width: 4.5rem;
+  }
+  td:nth-child(6),
+  th:nth-child(6) {
+    max-width: 4.5rem;
+  }
+}
+
+@media (max-width: 42rem) {
+  .tableContainer {
+    min-width: 33rem;
   }
 
-  tbody,
-  thead {
-    display: block;
-  }
-
-  tr {
-    margin-bottom: 10px; /* Adapte conforme necessário para melhor espaçamento entre linhas */
-    display: block;
+  td:nth-child(3),
+  th:nth-child(3) {
+    display: none;
   }
 }
