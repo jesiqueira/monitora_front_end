@@ -18,9 +18,8 @@ function App() {
         <UserStorage>
           <Header />
           <Routes>
-            <Route exact path="/" element={<Home />}></Route>
+            <Route path="/" element={<Home />}></Route>
             <Route
-              exact
               path="colaborador/*"
               element={
                 <ProtectedRoute>
@@ -29,7 +28,6 @@ function App() {
               }
             ></Route>
             <Route
-              exact
               path="descarte/*"
               element={
                 <ProtectedRoute>
@@ -38,7 +36,6 @@ function App() {
               }
             ></Route>
             <Route
-              exact
               path="admin/*"
               element={
                 <ProtectedRouteAdmin>
@@ -46,7 +43,7 @@ function App() {
                 </ProtectedRouteAdmin>
               }
             ></Route>
-            <Route exact path="login/*" element={<Login />}></Route>
+            <Route path="login/*" element={<Login />}></Route>
           </Routes>
           <Footer />
         </UserStorage>

@@ -6,8 +6,6 @@ import { useNavigate } from 'react-router-dom'
 export const UserContext = React.createContext()
 
 export const UserStorage = ({ children }) => {
-  const [menusair, setMenusair] = React.useState(false)
-  const [menuadmin, setMenuadmin] = React.useState(false)
   const [user, setUser] = React.useState(null)
   const [logado, setLogado] = React.useState(null)
   const [loading, setLoading] = React.useState(false)
@@ -20,7 +18,6 @@ export const UserStorage = ({ children }) => {
       setError(null)
       setLoading(false)
       setLogado(null)
-      setMenusair(false)
       window.localStorage.removeItem('token')
       window.localStorage.removeItem('user')
       navigate('/login')
@@ -86,9 +83,5 @@ export const UserStorage = ({ children }) => {
     autoLogin()
   }, [userLogout])
 
-  return (
-    <UserContext.Provider value={{ userLogin, userLogout, user, error, loading, logado, menusair, setMenusair, menuadmin, setMenuadmin }}>
-      {children}
-    </UserContext.Provider>
-  )
+  return <UserContext.Provider value={{ userLogin, userLogout, user, error, loading, logado }}>{children}</UserContext.Provider>
 }
