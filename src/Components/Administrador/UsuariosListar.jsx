@@ -22,6 +22,8 @@ const UsuariosListar = () => {
   const [senha, setSenha] = React.useState('')
   const [tatalIntemInDataBase, setTotalIntemInDataBase] = React.useState(0)
   const [currentPage, setCurrentPage] = React.useState(1)
+  const [userFilter, setUserFilter] = React.useState('')
+  const [erro, setErro] = React.useState('')
   const intemsPorPage = 25
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
@@ -59,25 +61,41 @@ const UsuariosListar = () => {
     }
   }
 
-  React.useEffect(() => {
-    const listarUsuario = async (sort, page) => {
-      try {
-        const response = await getUsuarios(sort, page)
-        if (response.status === 200) {
-          // Acesso ao cabeçalho 'X-Total-Count' da resposta
-          const totalCountFromHeader = response.headers.get('TotalUsers')
-          setTotalIntemInDataBase(parseInt(totalCountFromHeader) || 0)
-          // console.log(totalCountFromHeader)
-          setUsers(response.data)
-        } else {
-          throw new Error(response.data.error)
-        }
-      } catch (error) {
-        console.log(error)
-      }
+  const handleBuscar = (event) => {
+    event.preventDefault()
+    const user = [users.find((user) => user.login === event.target[0].value)]
+    if (user[0]) {
+      setErro('')
+      setUserFilter(user)
+      event.target[0].value = ''
+    } else {
+      setErro('Usuário não localizado, verifique Login!')
     }
-    listarUsuario(sort, currentPage)
-  }, [sort, currentPage])
+  }
+
+  React.useEffect(() => {
+    if (userFilter) {
+      setUsers(userFilter)
+    } else {
+      const listarUsuario = async (sort, page) => {
+        try {
+          const response = await getUsuarios(sort, page)
+          if (response.status === 200) {
+            // Acesso ao cabeçalho 'X-Total-Count' da resposta
+            const totalCountFromHeader = response.headers.get('TotalUsers')
+            setTotalIntemInDataBase(parseInt(totalCountFromHeader) || 0)
+            // console.log(totalCountFromHeader)
+            setUsers(response.data)
+          } else {
+            throw new Error(response.data.error)
+          }
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      listarUsuario(sort, currentPage)
+    }
+  }, [sort, currentPage, userFilter])
 
   React.useEffect(() => {
     setAdmCheck(userAtual.is_admin)
@@ -119,15 +137,17 @@ const UsuariosListar = () => {
             <Link to="cadastro">
               <DelatheAddUser /> Ad. Usuário
             </Link>
-            <input type="text" name="buscar" id="buscar" />
-            <Button>Buscar</Button>
+            <form onSubmit={handleBuscar}>
+              <input type="text" name="buscar" id="buscar" />
+              <Button>Buscar</Button>
+            </form>
           </div>
         </div>
+        <div className={styles.erro}>{erro && <p>{erro}</p>}</div>
       </section>
       <hr className={styles.hr} />
       <section className={styles.sectionTable}>
         <div className={styles.lista}>
-          {/* className={styles.tableContainer} */}
           <div>
             <Table datas={users} onUserChange={handleUserAtual} />
             <div className={styles.paginacao}>

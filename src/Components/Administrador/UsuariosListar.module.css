@@ -2,7 +2,8 @@
   display: grid;
   grid-template-areas:
     'detalhe detalhe'
-    'titulo titulo';
+    'titulo titulo'
+    'erro erro';
   margin: 0 auto;
 }
 
@@ -49,7 +50,11 @@
   font-size: 1.8rem;
 }
 
-.titulo div:last-child a + input {
+.titulo div:last-child form {
+  display: flex;
+  align-items: center;
+}
+.titulo div:last-child a + form {
   margin-left: 70px;
 }
 
@@ -76,11 +81,23 @@
   margin-left: 20px;
   background: #b47162;
   color: #47261f;
+  height: 45px;
+  padding: 8px;
 }
 
 .titulo div:last-child input + button:focus,
 .titulo div:last-child input + button:hover {
   color: white;
+}
+
+.erro {
+  grid-area: erro;
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 150px;
+  padding: 10px;
+  color: red;
 }
 
 .hr {
@@ -172,6 +189,7 @@ hr {
   padding: 20px;
   background: #e3e1e1;
   text-align: center;
+  border-radius: 5px;
 }
 .password {
   text-align: left;
@@ -214,6 +232,9 @@ hr {
     width: 1040px;
     margin: 33px auto;
   }
+  .erro {
+    margin-right: 153px;
+  }
 }
 
 @media (max-width: 77rem) {
@@ -226,12 +247,16 @@ hr {
     font-size: 1.5rem;
   }
 
-  .titulo div:last-child a + input {
+  .titulo div:last-child a + form {
     margin-left: 45px;
   }
   .hr {
     width: 866px;
     margin: 45px auto;
+  }
+
+  .erro {
+    margin-right: 153px;
   }
 }
 
@@ -244,10 +269,14 @@ hr {
   .titulo div:last-child input + button {
     font-size: 0.8rem;
     min-width: 6rem;
+    height: 40px;
   }
   .hr {
     width: 697px;
     margin: 40px auto;
+  }
+  .erro {
+    margin-right: 81px;
   }
 }
 
@@ -256,9 +285,14 @@ hr {
     font-size: 1.5rem;
   }
 
-  .titulo div:last-child a + input {
+  .titulo div:last-child a + form {
     margin-left: 35px;
   }
+
+  /* .titulo div:last-child input + button {
+    height: 40px;
+    background: red;
+  } */
   .hr {
     width: 650px;
     margin: 33px auto;
@@ -290,12 +324,16 @@ hr {
     font-size: 2rem;
   }
 
-  .titulo div:last-child a + input {
-    margin-left: 250px;
+  .titulo div:last-child a + form {
+    margin-left: 12rem;
   }
 
   .titulo div:last-child input {
     font-size: 1rem;
+  }
+
+  .titulo div:last-child input + button {
+    height: 43px;
   }
 
   .lista {
@@ -332,17 +370,18 @@ hr {
   .sectionTable {
     margin-bottom: 70px;
   }
-}
-
-@media (max-width: 55rem) {
-  .titulo div:last-child a + input {
-    margin-left: 12rem;
+  .erro {
+    margin-right: 78px;
   }
 }
 
 @media (max-width: 49.5rem) {
-  .titulo div:last-child a + input {
+  .titulo div:last-child a + form {
     margin-left: 5rem;
+  }
+
+  .titulo div:last-child input + button {
+    height: 42px;
   }
 }
 
@@ -351,9 +390,8 @@ hr {
     font-size: 1.3rem;
   }
 
-  .titulo div:last-child a + input {
+  .titulo div:last-child a + form {
     margin-left: 2rem;
-    background: red;
   }
 
   .titulo div:last-child input {
@@ -361,6 +399,10 @@ hr {
     font-size: 1rem;
     padding: 0.6rem;
     width: 180px;
+  }
+
+  .titulo div:last-child input + button {
+    height: 38px;
   }
 
   .info div:last-child h1 {
@@ -375,5 +417,8 @@ hr {
 
   .hr {
     width: 400px;
+  }
+  .erro {
+    margin-right: 60px;
   }
 }
