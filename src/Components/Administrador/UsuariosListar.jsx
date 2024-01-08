@@ -186,7 +186,7 @@ const UsuariosListar = () => {
               <Check
                 name="conta"
                 textChecked="Conta Ativa"
-                textNotChecked="Conta inativada"
+                textNotChecked="Conta inativa"
                 isChecked={contaAtivaCheck}
                 handleCheckboxChange={handleContaAtivaCheckChange}
               />

@@ -91,7 +91,6 @@ const UsuarioCadastrar = () => {
 
   return (
     <div className={styles.estrutura}>
-      {/* <FecharMenu menuToClose={menuClose} /> */}
       <Head title="Cadastro" description="Página de cadastro de usuário do sistema" />
       <div className={styles.detalhe}>
         <Detalhe />

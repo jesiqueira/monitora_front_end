@@ -1,0 +1,114 @@
+:root {
+  --bg-color: rgb(224, 221, 221);
+}
+
+.estrutura {
+  display: grid;
+  grid-template-areas:
+    'detalhe'
+    'main';
+}
+
+.detalhe {
+  grid-area: detalhe;
+  display: grid;
+  justify-items: end;
+  margin: 50px 120px 0 0;
+}
+
+.detalhe > svg {
+  transform: rotate(90deg);
+}
+
+.main {
+  grid-area: main;
+  display: grid;
+  grid-template-areas:
+    'titulo'
+    'conteudo';
+  justify-items: center;
+}
+
+.titulo {
+  grid-area: titulo;
+  margin: 50px 0px;
+  font-size: 2rem;
+}
+
+.conteudo {
+  grid-area: conteudo;
+  display: grid;
+  grid-template-areas: 'imagem dados';
+  gap: 30px;
+  background: var(--bg-color);
+  padding: 20px 30px;
+  border-radius: 5px;
+}
+
+.imagem {
+  grid-area: imagem;
+  max-width: 400px;
+  max-height: 400px;
+}
+.imagem svg {
+  width: 100%;
+  height: 100%;
+}
+
+.dados {
+  grid-area: dados;
+  min-width: 300px;
+}
+
+.dados button:hover,
+.dados button:focus {
+  color: white;
+}
+
+.erro {
+  color: red;
+  margin-bottom: 20px;
+}
+
+/* MEDIA */
+
+@media only screen and (min-width: 65rem) and (max-width: 75rem) {
+  .detalhe {
+    margin: 50px 100px 0 0;
+  }
+}
+@media only screen and (min-width: 58rem) and (max-width: 64rem) {
+  .detalhe {
+    margin: 50px 80px 0 0;
+  }
+}
+@media only screen and (min-width: 47rem) and (max-width: 57rem) {
+  .detalhe {
+    margin: 50px 20px 0 0;
+  }
+  .imagem {
+    max-width: 350px;
+    max-height: 350px;
+  }
+}
+@media only screen and (min-width: 38rem) and (max-width: 47rem) {
+  .detalhe {
+    margin: 50px 20px 0 0;
+  }
+  .imagem {
+    min-width: 270px;
+    min-height: 270px;
+  }
+  .dados {
+    min-width: 200px;
+    padding: 20px;
+  }
+}
+@media only screen and (max-width: 38rem) {
+  .detalhe {
+    margin: 50px 20px 0 0;
+  }
+  .imagem svg {
+    display: none;
+  }
+}

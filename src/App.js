@@ -10,6 +10,7 @@ import Descarte from './Components/Descarte/Descarte'
 import Administrador from './Components/Administrador/Administrador'
 import ProtectedRoute from './Components/Helper/ProtectedRoute'
 import ProtectedRouteAdmin from './Components/Helper/ProtectedRouteAdmin'
+import Usuario from './Components/Usuario/Usuario'
 
 function App() {
   return (
@@ -32,6 +33,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Descarte />
+                </ProtectedRoute>
+              }
+            ></Route>
+            <Route
+              path="usuario/*"
+              element={
+                <ProtectedRoute>
+                  <Usuario />
                 </ProtectedRoute>
               }
             ></Route>
