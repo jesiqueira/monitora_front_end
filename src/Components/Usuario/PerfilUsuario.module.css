@@ -7,13 +7,14 @@
   grid-template-areas:
     'detalhe'
     'main';
+  height: calc(100vh - 14.5rem);
 }
 
 .detalhe {
   grid-area: detalhe;
   display: grid;
   justify-items: end;
-  margin: 50px 120px 0 0;
+  margin: 50px 120px 0px 0px;
 }
 
 .detalhe > svg {
@@ -31,11 +32,11 @@
 
 .titulo {
   grid-area: titulo;
-  margin: 30px 0px;
+  margin: 20px 0px;
   font-size: 2rem;
 }
 
-.titulo p{
+.titulo p {
   font-size: 1rem;
   color: green;
 }
@@ -65,6 +66,11 @@
   min-width: 300px;
 }
 
+.dados button {
+  background: #b47162;
+  color: #47261f;
+}
+
 .dados button:hover,
 .dados button:focus {
   color: white;
@@ -79,17 +85,17 @@
 
 @media only screen and (min-width: 65rem) and (max-width: 75rem) {
   .detalhe {
-    margin: 50px 100px 0 0;
+    margin: 50px 100px 0px 0px;
   }
 }
 @media only screen and (min-width: 58rem) and (max-width: 64rem) {
   .detalhe {
-    margin: 50px 80px 0 0;
+    margin: 50px 80px 0px 0px;
   }
 }
 @media only screen and (min-width: 47rem) and (max-width: 57rem) {
   .detalhe {
-    margin: 50px 20px 0 0;
+    margin: 50px 20px 0px 0px;
   }
   .imagem {
     max-width: 350px;
@@ -98,7 +104,7 @@
 }
 @media only screen and (min-width: 38rem) and (max-width: 47rem) {
   .detalhe {
-    margin: 50px 20px 0 0;
+    margin: 50px 20px 0px 0px;
   }
   .imagem {
     min-width: 270px;
@@ -111,7 +117,7 @@
 }
 @media only screen and (max-width: 38rem) {
   .detalhe {
-    margin: 50px 20px 0 0;
+    margin: 50px 20px 0px 0px;
   }
   .imagem svg {
     display: none;

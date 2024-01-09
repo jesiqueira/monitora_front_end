@@ -3,7 +3,6 @@
   grid-template-areas:
     'detalhe detalhe'
     'content content';
-  /* margin-bottom: 130px; */
 }
 
 .detalhe {

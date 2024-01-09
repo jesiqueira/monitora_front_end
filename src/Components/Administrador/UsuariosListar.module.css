@@ -110,7 +110,7 @@
 .sectionTable {
   grid-area: article;
   background: #ebebeb;
-  margin: 0px auto 150px auto;
+  margin: 0px auto;
 }
 
 .lista {
@@ -211,7 +211,6 @@ hr {
   display: grid;
   justify-content: center;
   align-items: center;
-  margin-bottom: 150px;
 }
 
 /*MEDIAS*/
@@ -361,10 +360,6 @@ hr {
 
   .hr {
     width: 550px;
-  }
-
-  .paginacao {
-    margin-bottom: 10px;
   }
 
   .sectionTable {
