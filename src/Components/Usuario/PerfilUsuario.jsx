@@ -11,6 +11,7 @@ import Button from '../Forms/Button'
 const PerfilUsuario = () => {
   const { user } = React.useContext(UserContext)
   const [usuario, setUsuario] = React.useState('')
+  const [atualizado, setAtualizado] = React.useState(false)
   const [password, setPassword] = React.useState()
   const [confirm_password, setConfirm_password] = React.useState()
   const [erro, setErro] = React.useState('')
@@ -53,15 +54,22 @@ const PerfilUsuario = () => {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@#$%^&+=_!]{8,}$/
     if (password || confirm_password) {
       setErro('')
+      setAtualizado(false)
       if (password && confirm_password) {
         if (password === confirm_password) {
           if (!regex.test(password) && !regex.test(confirm_password)) {
+            console.log(password)
+            console.log(confirm_password)
             setErro('Senha deve ter: Ao menos 1 letra, 1 digito e 5 caracter de letras ou digitos.')
           } else {
             console.log('User: ', usuario)
+            const response = await update(usuario.id, usuario)
+            if (response.status === 200) {
+              setAtualizado(true)
+            }
           }
         } else {
           setErro('As senha não são iguais.')
@@ -72,7 +80,9 @@ const PerfilUsuario = () => {
     } else {
       setErro('')
       const response = await update(usuario.id, usuario)
-      console.log(response)
+      if (response.status === 200) {
+        setAtualizado(true)
+      }
     }
   }
 
@@ -86,6 +96,7 @@ const PerfilUsuario = () => {
         <main className={styles.main}>
           <div className={styles.titulo}>
             <h1>Meus Dados</h1>
+            {atualizado && <p>Usuário atualizado conforme solicitado.</p>}
           </div>
           <section className={styles.conteudo}>
             <div className={styles.imagem}>

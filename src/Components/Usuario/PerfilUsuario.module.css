@@ -31,8 +31,13 @@
 
 .titulo {
   grid-area: titulo;
-  margin: 50px 0px;
+  margin: 30px 0px;
   font-size: 2rem;
+}
+
+.titulo p{
+  font-size: 1rem;
+  color: green;
 }
 
 .conteudo {
