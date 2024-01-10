@@ -11,6 +11,7 @@ import Administrador from './Components/Administrador/Administrador'
 import ProtectedRoute from './Components/Helper/ProtectedRoute'
 import ProtectedRouteAdmin from './Components/Helper/ProtectedRouteAdmin'
 import Usuario from './Components/Usuario/Usuario'
+import Site from './Components/Site/Site'
 
 function App() {
   return (
@@ -42,6 +43,14 @@ function App() {
                 <ProtectedRoute>
                   <Usuario />
                 </ProtectedRoute>
+              }
+            ></Route>
+            <Route
+              path="site/*"
+              element={
+                <ProtectedRouteAdmin>
+                  <Site />
+                </ProtectedRouteAdmin>
               }
             ></Route>
             <Route
