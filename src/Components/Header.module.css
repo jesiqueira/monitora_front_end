@@ -213,12 +213,12 @@
     grid-template-areas:
       'links'
       'dropdown_menu';
-    top: 110px;
+    top: 97px;
     right: 0px;
     padding: 1rem 1rem;
     background: currentColor;
     border-radius: 0.2rem;
-    transform: translateX(-10px);
+    transform: translateX(10px);
     opacity: 0;
     pointer-events: none;
   }

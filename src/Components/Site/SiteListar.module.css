@@ -1,0 +1,125 @@
+:root {
+  --bg-table: #ebebeb;
+}
+
+.principal {
+  display: grid;
+  grid-template-areas:
+    'titulo'
+    'tabela';
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.titulo {
+  grid-area: titulo;
+  display: grid;
+  grid-template-areas: 'nomeSite buscarSite';
+  margin: 100px 50px 0 50px;
+}
+
+.nomeSite {
+  grid-area: nomeSite;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.nomeSite h1 {
+  text-wrap: nowrap;
+}
+
+.buscarSite {
+  grid-area: buscarSite;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+.buscarSite a {
+  color: black;
+  font-size: 1.5rem;
+  margin-right: 20px;
+  text-wrap: nowrap;
+}
+
+.buscarSite input {
+  border: 1px solid #eee;
+  border-radius: 0.5rem;
+  padding: 0.7rem;
+  font-size: 1rem;
+  margin-right: 15px;
+}
+
+.buscarSite input:focus,
+.buscarSite input:hover {
+  outline: none;
+  border-color: red;
+  background: white;
+  box-shadow: 0 0 0 3px #fb8267;
+}
+
+.form {
+  display: flex;
+}
+
+.form > button {
+  background: #b47162;
+  color: #47261f;
+  padding: 0.7rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  min-width: 7rem;
+  box-sizing: border-box;
+  transition: 0.1s;
+}
+
+.form button:focus,
+.buscarSite button:hover {
+  outline: none;
+  color: white;
+}
+
+.tabela {
+  grid-area: tabela;
+  /* background: rebeccapurple; */
+}
+.bgTable {
+  background: var(--bg-table);
+}
+
+.tabela hr {
+  background: #d9d9d9;
+  border: none;
+  height: 1px;
+  max-width: 80%;
+  margin: 20px auto 10px auto;
+}
+
+/* MEDIA */
+
+@media only screen and (min-width: 50rem) and (max-width: 61rem) {
+  .nomeSite h1 {
+    color: rebeccapurple;
+    font-size: 1.2rem;
+  }
+
+  .buscarSite a {
+    font-size: 1rem;
+  }
+
+  .buscarSite input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    /* margin-right: 15px; */
+  }
+
+  .form > button {
+    padding: 0.5rem;
+    cursor: pointer;
+    min-width: 5rem;
+  }
+}
