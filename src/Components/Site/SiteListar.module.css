@@ -9,6 +9,7 @@
     'tabela';
   max-width: 1200px;
   margin: 0 auto;
+  min-height: calc(100vh - 14.5rem);
 }
 
 .titulo {
@@ -43,6 +44,9 @@
   font-size: 1.5rem;
   margin-right: 20px;
   text-wrap: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .buscarSite input {
@@ -101,9 +105,8 @@
 
 /* MEDIA */
 
-@media only screen and (min-width: 50rem) and (max-width: 61rem) {
+@media only screen and (min-width: 51rem) and (max-width: 61rem) {
   .nomeSite h1 {
-    color: rebeccapurple;
     font-size: 1.2rem;
   }
 
@@ -115,6 +118,38 @@
     padding: 0.5rem;
     font-size: 1rem;
     /* margin-right: 15px; */
+  }
+
+  .form > button {
+    padding: 0.5rem;
+    cursor: pointer;
+    min-width: 5rem;
+  }
+}
+
+@media only screen and (min-width: 38rem) and (max-width: 50.99rem) {
+
+  .titulo {
+    grid-template-areas: 'nomeSite' 'buscarSite';
+    /* margin: 100px 50px 0 50px; */
+  }
+  .buscarSite {
+    justify-content: stretch;
+    align-items: center;
+    gap: 10px;
+  }
+  .nomeSite h1 {
+    color: rebeccapurple;
+    font-size: 1.2rem;
+  }
+  .buscarSite a {
+    font-size: 1rem;
+  }
+
+  .buscarSite input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    max-width: 140px;
   }
 
   .form > button {

@@ -5,13 +5,18 @@ import { ReactComponent as Site } from '../../Assets/site.svg'
 import { ReactComponent as AdmHome } from '../../Assets/add_home.svg'
 import styles from './SiteListar.module.css'
 import { getLocalSites } from '../../services/api/localSite'
+import Table from './Table'
 
 const SiteListar = () => {
-  
+  const [site, setSite] = React.useState('')
+
   React.useEffect(() => {
     const getSites = async () => {
       const response = await getLocalSites()
-      console.log(response)
+      // console.log(response)
+      if (response.status === 200) {
+        setSite(response.data)
+      }
     }
     getSites()
   }, [])
@@ -25,8 +30,9 @@ const SiteListar = () => {
             <h1>Adminitrar sites</h1>
           </div>
           <div className={styles.buscarSite}>
-            <AdmHome />
-            <Link to="cadastro"> Novo Site</Link>
+            <Link to="cadastro">
+              <AdmHome /> Novo Site
+            </Link>
             <form className={styles.form}>
               <input type="text" placeholder="buscar site" />
               <button>Localizar</button>
@@ -36,7 +42,8 @@ const SiteListar = () => {
         <section className={styles.tabela}>
           <hr />
           <div className={styles.bgTable}>
-            <h1>Tabela aqui..</h1>
+            <h1>Tabela aqui</h1>
+            {/* <Table sites={site} /> */}
           </div>
         </section>
       </main>
