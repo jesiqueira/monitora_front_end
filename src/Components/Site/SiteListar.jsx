@@ -41,10 +41,8 @@ const SiteListar = () => {
         </section>
         <section className={styles.tabela}>
           <hr />
-          <div className={styles.bgTable}>
-            <h1>Tabela aqui</h1>
-            {/* <Table sites={site} /> */}
-          </div>
+          <Table sites={site} />
+          {/* <div className={styles.bgTable}><h1>Tabela aqui</h1></div> */}
         </section>
       </main>
     </>
