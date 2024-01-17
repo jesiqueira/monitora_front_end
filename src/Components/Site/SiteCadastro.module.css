@@ -1,0 +1,38 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.main {
+  display: grid;
+  grid-template-areas:
+    'titulo titulo'
+    'imagemHome form';
+  
+  align-items: center;
+}
+
+hr {
+  max-width: 80%;
+  margin: 0 auto;
+  height: 2px;
+  border: none;
+  background: rgb(245, 245, 245);
+}
+
+.titulo {
+  grid-area: titulo;
+}
+.imagemHome {
+  grid-area: imagemHome;
+}
+
+.imagemHome > svg{
+  width: 400px;
+  height: 400px;
+}
+
+.form {
+  grid-area: form;
+  padding: 20px;
+}

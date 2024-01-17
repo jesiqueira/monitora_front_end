@@ -5,7 +5,7 @@ import { ReactComponent as Site } from '../../Assets/site.svg'
 import { ReactComponent as AdmHome } from '../../Assets/add_home.svg'
 import styles from './SiteListar.module.css'
 import { getLocalSites } from '../../services/api/localSite'
-import Table from './Table'
+import Table from './SiteTable'
 
 const SiteListar = () => {
   const [site, setSite] = React.useState('')
