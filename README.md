@@ -33,3 +33,15 @@ Como parte desse projeto tem o back-end que pode ser acessado nesse link: [Back-
   - ou yarn
 
 Obs.: Readme em desenvolvimento, logo atualizarei aqui.
+
+## SASS
+
+yarn install -g sass
+
+## verificar instalação
+
+sass --version
+
+## Compilar SASS
+
+sass --watch arquivo_origem arquivo_destino

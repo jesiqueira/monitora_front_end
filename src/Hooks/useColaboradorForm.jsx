@@ -42,6 +42,10 @@ const validacao = {
     regex: /^[1-9]\d*$/,
     message: 'Somente números são permitidos. Ex.: 123',
   },
+  cnpj: {
+    regex: /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/,
+    message: 'Formato inválido. Ex.: 12.345.678/0001-90',
+  },
   cidade: {
     regex: /^[a-zA-Záàâãéèêíïóôõöúçñ\s]+$/,
     message: 'Somente texto é permitido: ex.:São Carlos.',
