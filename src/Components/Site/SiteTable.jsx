@@ -21,7 +21,7 @@ const SiteTable = ({ sites }) => {
     <div className={styles.wrapper}>
       <div className={styles.table_container}>
         <table className={styles.table}>
-          <caption>Sites</caption>
+          <caption>Lista de Sites Cadastrados</caption>
           <thead>
             <tr>
               {headers.map((header) => {
@@ -64,7 +64,7 @@ const SiteTable = ({ sites }) => {
                   }
                   if (header === 'createdAt') {
                     return (
-                      <td data-cell={header} key={header}>
+                      <td data-cell='criado-em' key={header}>
                         {dataFormatada(site[header])}
                       </td>
                     )

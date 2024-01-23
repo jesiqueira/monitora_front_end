@@ -1,115 +1,104 @@
-/* Estilo básico da tabela */
-/* .tableContainer {
-  overflow-x: auto;
-  width: 100%;
-} */
-/* .table {
-  width: 100%;
+@charset "UTF-8";
+.wrapper .table_container .table {
   border-collapse: collapse;
-  margin: 30px 10px;
-} */
-
-/* .table th {
-  text-align: center;
-  padding: 10px;
-  background: #b1abab;
-  color: black;
-} */
-
-/* .table th > a,
-.table td > a {
-  color: black;
-} */
-
-/* .table th > a:hover {
+  background: #323232;
+  width: 100%;
+  /* Estilo para linhas ímpares */
+  /* Estilo para linhas pares */
+}
+.wrapper .table_container .table caption,
+.wrapper .table_container .table th,
+.wrapper .table_container .table td {
+  padding: 0.6rem;
+}
+.wrapper .table_container .table th,
+.wrapper .table_container .table td {
+  white-space: nowrap;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.wrapper .table_container .table caption,
+.wrapper .table_container .table th {
+  text-align: left;
+}
+.wrapper .table_container .table caption {
+  background: rgb(134, 128, 128);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+}
+.wrapper .table_container .table th a:hover {
   color: rgb(138, 128, 128);
-} */
-
-/* table,
-th,
-td {
-  border: 1px solid #ddd;
-} */
-
-/* .table td {
-  padding: 10px;
-  text-align: left;
-  white-space: nowrap; Evitar quebra de linha dentro da célula
-  overflow: hidden; Ocultar conteúdo que ultrapassa a célula
-  text-overflow: ellipsis; Adicionar reticências (...) para indicar conteúdo truncado
-} */
-
-/* .table td:nth-child(1),
-.table th:nth-child(1) {
-  max-width: 6.25rem;
-  text-overflow: ellipsis; adiciona "..." ao final do texto se ele for cortado
-  white-space: nowrap; impede que o texto quebre em várias linhas
-} */
-
-/* .table td:nth-child(2),
-.table th:nth-child(2) {
-  max-width: 3.75rem;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+}
+.wrapper .table_container .table td:nth-child(1) {
   color: rgb(65, 65, 105);
-} */
-
-/* .table td:nth-child(2):hover {
-  color: rgb(226, 16, 51);
-} */
-
-/* .table td:nth-child(3),
-.table th:nth-child(3),
-.table td:nth-child(5),
-.table th:nth-child(5),
-.table td:nth-child(4),
-.table th:nth-child(4) {
-  max-width: 3.75rem;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-} */
-/* 
-.table td:last-child,
-.table th:last-child {
-  max-width: 6.25rem;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-} */
-
-/* .handleSelecione {
+}
+.wrapper .table_container .table td:nth-child(1):hover {
+  color: rgb(129, 129, 153);
   cursor: pointer;
-} */
-
-/* Estilo para linhas ímpares */
-/* .table tr:nth-child(odd) {
-  background-color: #f2f2f2; Cor de fundo para linhas ímpares
-} */
-
-/* Estilo para linhas pares */
-/* .table tr:nth-child(even) {
-  background-color: #ffffff; Cor de fundo para linhas pares
-} */
-
-.wrapper {
-  /* width: min(900px, 100% - 3rem); */
-  width: min(900px, 100% - 3rem);
-  /* margin-inline: auto; */
+}
+.wrapper .table_container .table tr:nth-child(odd) {
+  background-color: #f2f2f2; /* Cor de fundo para linhas ímpares */
+}
+.wrapper .table_container .table tr:nth-child(even) {
+  background-color: #ffffff; /* Cor de fundo para linhas pares */
 }
 
-.table {
-  width: 100%;
-  border-collapse: collapse;
+/* MEDIA 980 - 1200 */
+@media only screen and (min-width: 61.25rem) and (max-width: 75rem) {
+  .wrapper {
+    width: min(870px, 100% - 3rem);
+    overflow-x: auto;
+    margin-inline: auto;
+  }
+  .wrapper .table_container .table td:nth-last-child(2),
+  .wrapper .table_container .table th:nth-last-child(2) {
+    max-width: 9rem;
+    text-overflow: ellipsis; /* adiciona "..." ao final do texto se ele for cortado */
+    white-space: nowrap; /* impede que o texto quebre em várias linhas */
+  }
+}
+/* MEDIA 600 - 980 */
+@media only screen and (min-width: 600px) and (max-width: 980px) {
+  .wrapper {
+    width: min(600px, 100% - 3rem);
+    overflow-x: auto;
+    margin-inline: auto;
+  }
+  .wrapper .table_container .table td:nth-last-child(2),
+  .wrapper .table_container .table th:nth-last-child(2) {
+    max-width: 9rem;
+    text-overflow: ellipsis; /* adiciona "..." ao final do texto se ele for cortado */
+    white-space: nowrap; /* impede que o texto quebre em várias linhas */
+  }
+}
+@media only screen and (max-width: 37.49rem) {
+  .wrapper {
+    width: min(650px, 100% - 3rem);
+    margin-inline: auto;
+  }
+  .wrapper .table_container .table th {
+    display: none;
+  }
+  .wrapper .table_container .table td {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: 11ch auto;
+    padding: 0.5rem 1rem;
+  }
+  .wrapper .table_container .table td:first-child {
+    padding-top: 2rem;
+  }
+  .wrapper .table_container .table td:last-child {
+    padding-bottom: 2rem;
+  }
+  .wrapper .table_container .table td::before {
+    content: attr(data-cell) ": ";
+    font-weight: 700;
+    text-transform: capitalize;
+  }
 }
 
-.table > th,
-td {
-  padding: 1rem;
-}
-/* .table  th{
-  text-align: left;
-} */
-
-/* .table_container{
-  max-width: 100%;
-  overflow-x: auto;
-} */
+/*# sourceMappingURL=SiteTable.module.css.map */
