@@ -17,7 +17,9 @@
 .titulo {
   grid-area: titulo;
   display: grid;
-  grid-template-areas: 'nomeSite buscarSite';
+  grid-template-areas:
+    'nomeSite buscarSite'
+    'erro erro';
   margin: 100px 50px 0 50px;
 }
 
@@ -64,6 +66,14 @@
   border-color: red;
   background: white;
   box-shadow: 0 0 0 3px #fb8267;
+}
+
+.erro {
+  grid-area: erro;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 150px;
+  color: red;
 }
 
 .form {
@@ -126,6 +136,10 @@
     cursor: pointer;
     min-width: 5rem;
   }
+
+  .erro {
+    margin-right: 30px;
+  }
 }
 
 /* MEDIA 600 - 980 */
@@ -135,14 +149,14 @@
     display: grid;
     grid-template-areas:
       'nomeSite'
-      'buscarSite';
+      'buscarSite'
+      'erro';
     margin: 50px 50px;
-    row-gap: 30px;
+    row-gap: 10px;
   }
 
   .nomeSite h1 {
     font-size: 2rem;
-    color: #b47162;
   }
 
   .buscarSite {
@@ -153,6 +167,11 @@
     padding: 0.5rem;
     font-size: 1rem;
     max-width: 160px;
+  }
+
+  .erro {
+    justify-content: flex-start;
+    margin-left: 190px;
   }
 
   .tabela {
@@ -174,9 +193,10 @@
   .titulo {
     grid-template-areas:
       'nomeSite'
-      'buscarSite';
+      'buscarSite'
+      'erro';
     margin-top: 50px;
-    row-gap: 20px;
+    row-gap: 10px;
   }
   .buscarSite {
     justify-content: stretch;
@@ -193,6 +213,11 @@
     padding: 0.5rem;
     font-size: 1rem;
     max-width: 160px;
+  }
+
+  .erro {
+    justify-content: flex-start;
+    margin-top: 8px;
   }
 
   .tabela hr {
