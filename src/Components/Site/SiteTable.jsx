@@ -2,9 +2,20 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styles from './SiteTable.module.css'
 
-const SiteTable = ({ sites }) => {
+const SiteTable = ({ sites, onSiteChange }) => {
+  const [site, setSite] = React.useState('')
+
+  React.useEffect(() => {
+    onSiteChange(site)
+  }, [site, onSiteChange])
+
   if (!sites || sites.length === 0) {
     return <p>Nenhum Local / site encontrado.</p>
+  }
+
+  const handleSelecione = ({ target }) => {
+    const site = sites.find((item) => item.nome === target.textContent)
+    setSite(site)
   }
 
   function dataFormatada(dataString) {
@@ -17,6 +28,7 @@ const SiteTable = ({ sites }) => {
   }
 
   const headers = Object.keys(sites[0])
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.table_container}>
@@ -35,7 +47,7 @@ const SiteTable = ({ sites }) => {
                 if (header === 'createdAt') {
                   return (
                     <th key={header}>
-                      <Link to={`/admin?sort=${header}`} target="_self">
+                      <Link to={`/site?sort=${header}`} target="_self">
                         CRIADO-EM
                       </Link>
                     </th>
@@ -43,7 +55,7 @@ const SiteTable = ({ sites }) => {
                 } else {
                   return (
                     <th key={header}>
-                      <Link to={`/admin?sort=${header}`} target="_self">
+                      <Link to={`/site?sort=${header}`} target="_self">
                         {header.toUpperCase()}
                       </Link>
                     </th>
@@ -62,9 +74,16 @@ const SiteTable = ({ sites }) => {
                   if (header === 'updatedAt') {
                     return null
                   }
+                  if (header === 'nome') {
+                    return (
+                      <td data-cell={header} key={header} onClick={handleSelecione}>
+                        {site[header]}
+                      </td>
+                    )
+                  }
                   if (header === 'createdAt') {
                     return (
-                      <td data-cell='criado-em' key={header}>
+                      <td data-cell="criado-em" key={header}>
                         {dataFormatada(site[header])}
                       </td>
                     )

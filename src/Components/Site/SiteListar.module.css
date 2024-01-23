@@ -1,16 +1,23 @@
 :root {
   --bg-table: #ebebeb;
 }
+.estrutura {
+  display: grid;
+  grid-template-areas:
+    'principal'
+    'paginacao';
+}
 
 .principal {
+  grid-area: principal;
   display: grid;
   grid-template-areas:
     'titulo'
     'tabela';
   max-width: 1200px;
   margin: 0 auto;
-  min-height: calc(100vh - 14.1rem);
-  grid-auto-rows: 150px;
+  min-height: calc(100vh - 17rem);
+  grid-auto-rows: 140px;
   row-gap: 50px;
 }
 
@@ -21,6 +28,24 @@
     'nomeSite buscarSite'
     'erro erro';
   margin: 100px 50px 0 50px;
+}
+
+.tabela {
+  grid-area: tabela;
+}
+
+.tabela hr {
+  background: #d9d9d9;
+  border: none;
+  height: 1px;
+  max-width: 80%;
+  margin: 30px auto;
+}
+.paginacao {
+  grid-area: paginacao;
+  display: grid;
+  justify-content: center;
+  align-items: center;
 }
 
 .nomeSite {
@@ -95,18 +120,6 @@
 .buscarSite button:hover {
   outline: none;
   color: white;
-}
-
-.tabela {
-  grid-area: tabela;
-}
-
-.tabela hr {
-  background: #d9d9d9;
-  border: none;
-  height: 1px;
-  max-width: 80%;
-  margin: 30px auto;
 }
 
 /* MEDIA 980 - 1200 */
@@ -186,6 +199,11 @@
 
 /* MEDIA <= 600*/
 @media only screen and (max-width: 37.49rem) {
+  .estrutura {
+    grid-template-areas:
+      'paginacao'
+      'principal';
+  }
   .tabela {
     max-width: 600px;
     grid-area: tabela;
@@ -227,5 +245,9 @@
     padding: 0.5rem;
     cursor: pointer;
     min-width: 8rem;
+  }
+
+  .paginacao {
+    display: none;
   }
 }

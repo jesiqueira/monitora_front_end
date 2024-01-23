@@ -1,7 +1,7 @@
 import { api } from '../../Api'
 
-export const getLocalSites = async () => {
-  let url = '/site'
+export const getLocalSites = async (sort = 'nome', page = 1) => {
+  let url = `/site?sort=${sort}&page=${page}`
   return api.get(url)
 }
 export const createLocalSite = async (data) => {
