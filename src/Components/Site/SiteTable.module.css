@@ -74,6 +74,8 @@
     white-space: nowrap; /* impede que o texto quebre em várias linhas */
   }
 }
+
+/* MEDIA < 600 */
 @media only screen and (max-width: 37.49rem) {
   .wrapper {
     width: min(650px, 100% - 3rem);
