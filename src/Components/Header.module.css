@@ -19,13 +19,7 @@
 
 .logo > svg {
   margin-right: 10px;
-  width: 100px;
-  height: 100px;
 }
-
-/* .logo svg > *{
-  fill: #e45454;
-} */
 
 .navegacao {
   display: flex;
