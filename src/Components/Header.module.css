@@ -9,7 +9,7 @@
 .logo {
   display: flex;
   align-items: center;
-  max-width: 250px;
+  max-width: 380px;
 }
 
 .logo > h1 {
@@ -19,7 +19,13 @@
 
 .logo > svg {
   margin-right: 10px;
+  width: 100px;
+  height: 100px;
 }
+
+/* .logo svg > *{
+  fill: #e45454;
+} */
 
 .navegacao {
   display: flex;
