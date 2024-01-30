@@ -4,8 +4,39 @@ import Input from '../Forms/Input'
 import Button from '../Forms/Button'
 import { ReactComponent as Home } from '../../Assets/apartment.svg'
 import Head from '../Helper/Head'
+import { show } from '../../services/api/localSite'
+import { useParams } from 'react-router-dom'
 
 function SiteUpdate() {
+  const [site, setSite] = React.useState('')
+  const { id } = useParams()
+
+  function onHandleSubmit(event) {
+    event.preventDefault()
+    console.log(' prevenido')
+  }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setSite((prevSite) => ({
+      ...prevSite,
+      [name]: value,
+    }))
+  }
+
+  React.useEffect(() => {
+    if (id) {
+      const buscarSite = async (id) => {
+        const response = await show(id)
+
+        if (response.status === 200) {
+          setSite(response.data)
+        }
+      }
+      buscarSite(id)
+    }
+  }, [id])
+
   return (
     <main className={styles.main}>
       <Head title="Sites-Update" description="Atualizar / excluir site cadastrado." />
@@ -15,18 +46,18 @@ function SiteUpdate() {
         <div className={styles.imagem}>
           <Home />
         </div>
-        <form className={styles.form}>
-          <Input label="Nome da Localidade" />
+        <form className={styles.form} onSubmit={onHandleSubmit}>
+          <Input label="Nome da Localidade" name="nome" type="text" id="nome" value={site.nome || ''} onChange={handleInputChange} />
           <div className={styles.dadosForm}>
-            <Input label="CEP" />
-            <Input label="Estado" />
+            <Input label="CEP" id="cep" type="text" name="cep" value={site.cep || ''} onChange={handleInputChange} />
+            <Input label="Estado" name="estado" type="text" id="estado" value={site.estado || ''} onChange={handleInputChange} />
           </div>
-          <Input label="Rua" />
+          <Input label="Rua" name="rua" type="text" id="rua" value={site.rua || ''} onChange={handleInputChange} />
           <div className={styles.dadosForm}>
-            <Input label="Número" />
-            <Input label="CNPJ" />
+            <Input label="Número" name="numero" type="text" id="numero" value={site.numero || ''} onChange={handleInputChange} />
+            <Input label="CNPJ" name="cnpj" type="text" id="cpnj" value={site.cnpj || ''} onChange={handleInputChange} />
           </div>
-          <Input label="Bairro" />
+          <Input label="Bairro" name="bairro" type="text" id="bairro" value={site.bairro || ''} onChange={handleInputChange} />
           <div className={styles.button}>
             <Button>Atualizar</Button>
             <Button>Excluir</Button>
