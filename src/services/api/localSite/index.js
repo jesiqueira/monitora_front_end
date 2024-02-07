@@ -14,3 +14,13 @@ export const show = async (id) => {
   let url = `/site/${id}`
   return api.get(url)
 }
+
+export const update = async (id, data) => {
+  let url = `/site/${id}`
+  return api.put(url, data)
+}
+
+export const delet = async (id) => {
+  let url = `/site/${id}`
+  return api.get(url)
+}

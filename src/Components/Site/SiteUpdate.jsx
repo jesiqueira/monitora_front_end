@@ -4,16 +4,45 @@ import Input from '../Forms/Input'
 import Button from '../Forms/Button'
 import { ReactComponent as Home } from '../../Assets/apartment.svg'
 import Head from '../Helper/Head'
-import { show } from '../../services/api/localSite'
-import { useParams } from 'react-router-dom'
+import { show, update } from '../../services/api/localSite'
+import { useParams, useNavigate } from 'react-router-dom'
 
 function SiteUpdate() {
   const [site, setSite] = React.useState('')
+  const [updateSite, setUpdateSite] = React.useState(false)
+  const [delet, setDelet] = React.useState(false)
   const { id } = useParams()
+
+  const navigate = useNavigate()
+
+  const handleButtonUpdate = () => {
+    setDelet(false)
+    setUpdateSite(true)
+  }
+
+  const handleButtonDelete = () => {
+    setUpdateSite(false)
+    const confirma = window.confirm('Tem certeza que deseja remover?')
+    if (confirma) {
+      setDelet(true)
+    }
+  }
 
   function onHandleSubmit(event) {
     event.preventDefault()
-    console.log(' prevenido')
+    if (updateSite) {
+      const atualizar = async (id, data) => {
+        const response = await update(id, data)
+
+        if (response.status === 200) {
+          navigate('site')
+        }
+        console.log(response)
+      }
+      atualizar(site.id, site)
+    } else if (delet) {
+      console.log(site.id)
+    }
   }
 
   const handleInputChange = (e) => {
@@ -59,8 +88,8 @@ function SiteUpdate() {
           </div>
           <Input label="Bairro" name="bairro" type="text" id="bairro" value={site.bairro || ''} onChange={handleInputChange} />
           <div className={styles.button}>
-            <Button>Atualizar</Button>
-            <Button>Excluir</Button>
+            <Button onClick={handleButtonUpdate}>Atualizar</Button>
+            <Button onClick={handleButtonDelete}>Excluir</Button>
           </div>
         </form>
       </section>
