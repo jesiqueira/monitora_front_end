@@ -22,5 +22,5 @@ export const update = async (id, data) => {
 
 export const delet = async (id) => {
   let url = `/site/${id}`
-  return api.get(url)
+  return api.delete(url)
 }
