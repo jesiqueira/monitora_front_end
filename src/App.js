@@ -12,6 +12,7 @@ import ProtectedRoute from './Components/Helper/ProtectedRoute'
 import ProtectedRouteAdmin from './Components/Helper/ProtectedRouteAdmin'
 import Usuario from './Components/Usuario/Usuario'
 import Site from './Components/Site/Site'
+import Equipamento from './Components/Equipamento/Equipamento'
 
 function App() {
   return (
@@ -34,6 +35,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Descarte />
+                </ProtectedRoute>
+              }
+            ></Route>
+            <Route
+              path="equipamento/*"
+              element={
+                <ProtectedRoute>
+                  <Equipamento />
                 </ProtectedRoute>
               }
             ></Route>
