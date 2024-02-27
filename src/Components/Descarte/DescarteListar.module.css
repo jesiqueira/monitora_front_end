@@ -3,6 +3,103 @@ td {
   text-transform: uppercase;
 }
 
+/* Precisa trazer as informações do banco para poder retirar o cursor pointer */
+span {
+  cursor: pointer;
+}
+
 .content {
   margin-top: 100px;
+}
+
+.modalContainer {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 2000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContainer.mostrar {
+  display: flex;
+}
+
+@keyframes modal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -60px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.mostrar.modal {
+  animation: modal 0.3s;
+}
+
+.modal {
+  background: #fff;
+  width: 40%;
+  min-width: 300px;
+  padding: 40px;
+  border: 10px solid rgb(180, 113, 98);
+  box-shadow: 0 0 0 10px #fff;
+  border-radius: 4px;
+  position: relative;
+}
+
+.fechar {
+  position: absolute;
+  font-size: 1.2rem;
+  top: -20px;
+  right: -20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 30%;
+  border: 4px solid #fff;
+  background: rgb(180, 113, 98);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+.fechar:hover {
+  color: rgb(83, 7, 7);
+  border: 2px solid rgb(251, 130, 103);
+  box-shadow: 0 0 1px 1px rgba(250, 0, 3);
+}
+
+.conteudoModal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirmar {
+  background: rgb(180, 113, 98);
+  color: rgb(83, 7, 7);
+  border-radius: 4px;
+  border: none;
+  height: 50px;
+  width: 100px;
+  text-align: center;
+  padding: 15px;
+  }
+
+.confirmar:hover {
+  color: #fff;
+  border: 2px solid rgb(251, 130, 103);
+  box-shadow: 0 0 1px 1px rgba(250, 0, 3);
+}
+
+h3 {
+  margin-bottom: 50px;
 }

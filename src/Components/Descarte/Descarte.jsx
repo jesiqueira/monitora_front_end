@@ -44,7 +44,7 @@ const Descarte = () => {
               <Button className={styles.button}>Buscar</Button>
             </form>
             <div className={styles.exportar}>
-              <PDF />
+              <PDF/>              
               <EXCELL />
             </div>
           </div>
