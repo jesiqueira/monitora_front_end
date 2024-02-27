@@ -1,100 +1,104 @@
 .container {
   height: calc(100vh - 14.5rem);
-  padding: 0px 10px;
+  padding: 0px 2rem;
 }
 .container .main {
   display: grid;
-  grid-template-columns: 1fr;
+  margin-top: 8rem;
+  grid-template-areas: "menu" "form" "lista";
+  max-width: 1600px;
+  margin-inline: auto;
 }
-.container .main h1 {
-  text-align: center;
-  margin: 4rem 0px;
-  font-size: 36px;
-}
-.container .main .menu {
+.container .menu {
+  grid-area: menu;
   display: grid;
-  grid-template-areas: "form" "lista";
-  background: #d9d9d9;
-}
-.container .main .menu .form {
-  grid-area: form;
-  display: grid;
-  grid-template-columns: 2fr 3fr 1fr;
-  grid-template-areas: "inputRadio buscar icons";
-  padding: 10px;
+  grid-template-areas: "titulo menu_item";
   align-items: center;
+  justify-content: space-between;
 }
-.container .main .menu .form .inputRadio {
-  grid-area: inputRadio;
-  display: flex;
-  flex-direction: row;
-  column-gap: 10px;
-}
-.container .main .menu .form .inputRadio label {
-  display: flex;
-  column-gap: 10px;
-}
-.container .main .menu .form .buscar {
-  grid-area: buscar;
-  display: flex;
-  column-gap: 30px;
-  align-items: center;
-  margin-left: 30px;
-}
-.container .main .menu .form .buscar div {
-  margin-bottom: 0px;
-}
-.container .main .menu .form .buscar div Input {
-  min-width: 150px;
-}
-.container .main .menu .form .buscar div label {
-  padding-bottom: 0px;
-}
-.container .main .menu .form .buscar div select {
-  margin: 0px;
-}
-.container .main .menu .form .icons {
-  grid-area: icons;
+.container .menu .titulo {
+  grid-area: titulo;
   display: flex;
   align-items: center;
 }
-.container .main .menu .form .icons .exportar {
+.container .menu .titulo h1 {
+  margin-left: 10px;
+}
+.container .menu .menu_item {
+  grid-area: menu_item;
   display: flex;
   align-items: center;
-  margin-left: 20px;
-  border-left: 5px solid;
 }
-.container .main .menu .form .icons .exportar span {
-  margin: 0 20px;
-  font-size: 2rem;
-}
-.container .main .menu .form .icons .exportar svg {
+.container .menu .menu_item span {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
   cursor: pointer;
 }
-.container .main .menu .form .icons .exportar svg + svg {
+.container .menu .menu_item span svg {
+  margin-right: 8px;
+}
+.container .menu .menu_item a {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  margin-left: 30px;
+  color: black;
+}
+.container .menu .menu_item a svg {
+  margin-right: 8px;
+}
+.container .menu .menu_item .exportar {
+  display: flex;
+  margin-left: 40px;
+  align-items: center;
+}
+.container .menu .menu_item .exportar svg + svg {
   margin-left: 20px;
 }
-
-@media only screen and (max-width: 1380px) {
-  .container .main .menu .form .inputRadio {
-    flex-direction: column;
-    row-gap: 10px;
-  }
-  .container .main .menu .form .icons {
-    grid-area: icons;
-    display: flex;
-    align-items: center;
-    margin-left: 30px;
-  }
-  .container .main .menu .form .icons .exportar {
-    margin-left: 30px;
-  }
-  .container .main .menu .form .icons .exportar span {
-    display: none;
-  }
-  .container .main .menu .form .icons .exportar svg:nth-child(2) {
-    margin-left: 30px;
-  }
+.container .menu .menu_item .exportar svg {
+  cursor: pointer;
+}
+.container .form {
+  grid-area: form;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 4.25rem;
+}
+.container .form .inputRadio {
+  display: flex;
+  align-items: center;
+  column-gap: 40px;
+}
+.container .form .inputRadio label {
+  display: flex;
+  column-gap: 10px;
+  font-size: 1.5rem;
+}
+.container .form .buscar {
+  margin-left: 40px;
+  display: flex;
+  align-items: center;
+  column-gap: 30px;
+}
+.container .form .buscar div {
+  margin-bottom: 0px;
+}
+.container .form .buscar div Input {
+  min-width: 150px;
+}
+.container .form .buscar div label {
+  padding-bottom: 0px;
+}
+.container .form .buscar div select {
+  margin: 0px;
+  margin-left: -15px;
+}
+.container .form .buscar button {
+  background: #b47162;
+}
+.container .lista {
+  grid-area: lista;
 }
 
 /*# sourceMappingURL=Equipamento.module.css.map */
