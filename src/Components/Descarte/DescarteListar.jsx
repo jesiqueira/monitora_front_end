@@ -77,6 +77,7 @@ const DescarteListar = () => {
           
           <div className={styles.conteudoModal}>
           <h3>Você tem certeza que deseja restaurar esse equipamento?</h3>
+          {/* precisa puxar as informações do back-end para finalizar o botão */}
           <span className={styles.confirmar}  id='confirmacao' onClick={botaoConfirmar}>Confirmar</span>
           </div>
         </div>
