@@ -27,8 +27,6 @@ const Descarte = () => {
     <>
       <Head title="Descarte" description=" Página para lista todos os itens para descarte do sistema." />
       <section className={styles.section}>
-        <div className={styles.detalhe}>
-        </div>
         <main className={styles.content}>
           <div className={styles.menu}>
             <div className={styles.titulo}>

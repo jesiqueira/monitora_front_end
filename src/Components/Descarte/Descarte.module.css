@@ -5,24 +5,13 @@ div:last-child input,
 
 .section {
   min-height: calc(100vh - 232px);
+  margin-top: 8rem;
   display: grid;
   grid-template-areas:
     'detalhe detalhe '
     'content content';
     padding: 20px;
   }
-  
-  .detalhe {
-  grid-area: detalhe;
-  margin: 50px 120px 0 0;
-  max-height: 52px;
-  display: grid;
-  justify-items: end;
-}
-
-.detalhe > svg {
-  transform: rotate(90deg);
-}
 
 .content {
   display: flex;

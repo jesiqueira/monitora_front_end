@@ -7,7 +7,7 @@ const Equipamento = () => {
   return (
     <Routes>
       <Route path="/*" element={<EquipamentoListar />} />
-      <Route path='equipamentoCadastro' element={<EquipamentoCadastro/>}/>
+      <Route path="equipamentoCadastro" element={<EquipamentoCadastro />} />
     </Routes>
   )
 }

@@ -13,6 +13,7 @@ import ProtectedRouteAdmin from './Components/Helper/ProtectedRouteAdmin'
 import Usuario from './Components/Usuario/Usuario'
 import Site from './Components/Site/Site'
 import Equipamento from './Components/Equipamento/Equipamento'
+import Transferencia from './Components/Transferencia/Transferencia'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Home />}></Route>
+            <Route path="/transferencia" element={<Transferencia />}></Route>
             <Route
               path="colaborador/*"
               element={

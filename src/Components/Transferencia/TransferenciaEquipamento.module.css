@@ -1,0 +1,83 @@
+.section {
+  height: calc(83vh - 12.7rem);
+  padding: 0px 2rem;
+  margin-top: 8rem;
+}
+
+.section,
+ .menu {
+  display: grid;
+  grid-template-areas:
+    'detalhe detalhe '
+    'content content'
+    'menu menu' ;
+    padding: 20px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+margin-inline: auto;
+}
+
+.menu {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  grid-template-areas: "titulo menu forms";
+  column-gap: 20px;
+}
+
+.titulo {
+  grid-area: titulo;
+  display: flex;
+  align-items: center;
+}
+
+.titulo h1 {
+  margin-left: 20px;
+  font-size: 3rem;
+}
+
+.informacao > h3 {
+  font-size: 1.125rem;
+  display: flex;
+  margin: 0px;
+  z-index: 100;
+  position: absolute;
+  margin-top: -50px;
+  min-width: 210px;
+}
+
+.inputRadio {
+  display: flex;
+  align-items: center;
+  column-gap: 40px;
+}
+
+.inputRadio label {
+  display: flex;
+  margin-left: -20px;
+}
+
+.forms {
+  grid-area: forms;
+  display: flex;
+  column-gap: 20px;
+  align-items: center;
+  position: relative;
+  /* margin-left: 200px; */
+}
+
+.formContent {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 13rem;
+  margin-top: 100px;
+}
+
+.button {
+  grid-column: 2;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
