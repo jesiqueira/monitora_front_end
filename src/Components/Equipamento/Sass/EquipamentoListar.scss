@@ -1,0 +1,122 @@
+.container {
+  height: calc(100vh - 14.5rem);
+  padding: 0px 2rem;
+
+  .main {
+    display: grid;
+    margin-top: 8rem;
+    grid-template-areas:
+      'menu'
+      'form'
+      'lista';
+    max-width: 1600px;
+    margin-inline: auto;
+  }
+
+  .menu {
+    grid-area: menu;
+    display: grid;
+    grid-template-areas: 'titulo menu_item';
+    align-items: center;
+    justify-content: space-between;
+
+    .titulo {
+      grid-area: titulo;
+      display: flex;
+      align-items: center;
+
+      h1 {
+        margin-left: 10px;
+      }
+    }
+
+    .menu_item {
+      grid-area: menu_item;
+      display: flex;
+      align-items: center;
+
+      span {
+        display: flex;
+        align-items: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+
+        svg {
+          margin-right: 8px;
+        }
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+        font-size: 1.5rem;
+        margin-left: 30px;
+        color: black;
+
+        svg {
+          margin-right: 8px;
+        }
+      }
+      .exportar {
+        display: flex;
+        margin-left: 40px;
+        align-items: center;
+
+        svg + svg {
+          margin-left: 20px;
+        }
+
+        svg {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .form {
+    grid-area: form;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 4.25rem;
+
+    .inputRadio {
+      display: flex;
+      align-items: center;
+      column-gap: 40px;
+
+      label {
+        display: flex;
+        column-gap: 10px;
+        font-size: 1.5rem;
+      }
+    }
+
+    .buscar {
+      margin-left: 40px;
+      display: flex;
+      align-items: center;
+      column-gap: 30px;
+
+      div {
+        margin-bottom: 0px;
+
+        Input {
+          min-width: 150px;
+        }
+        label {
+          padding-bottom: 0px;
+        }
+        select {
+          margin: 0px;
+          margin-left: -15px;
+        }
+      }
+
+      button {
+        background: #b47162;
+      }
+    }
+  }
+  .lista {
+    grid-area: lista;
+  }
+}

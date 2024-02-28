@@ -7,7 +7,7 @@ const Administrador = () => {
   return (
     <Routes>
       <Route path="/*" element={<UsuariosListar />} />
-      <Route path="cadastro" element={<UsuarioCadastrar/>} />
+      <Route path="cadastro" element={<UsuarioCadastrar />} />
     </Routes>
   )
 }

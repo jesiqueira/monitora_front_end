@@ -83,7 +83,7 @@ const Header = () => {
                 <div className={styles.submenu}>
                   <ul>
                     <li>
-                      <NavLink to="#">Perfil</NavLink>
+                      <NavLink to="/usuario">Perfil</NavLink>
                     </li>
                     <li>
                       <NavLink to="#" end onClick={userLogout}>

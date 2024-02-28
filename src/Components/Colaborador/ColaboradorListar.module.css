@@ -1,7 +1,6 @@
 /* GRID GERAL */
 .estrutura {
-  min-height: calc(100vh - 45px);
-  margin-bottom: 100px;
+  min-height: calc(100vh - 232px);
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas:

@@ -10,8 +10,9 @@ const validacao = {
     message: 'Somente letras são permitidas. Ex.: mapfrebr',
   },
   senha: {
-    regex: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-    message: 'Senha deve ter: Ao menos 1 letra, 1 digito e 5 caracter de letras ou digitos.',
+    regex: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@#$%^&+=_!]{8,}$/,
+    // regex: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%^&+=_!])[A-Za-z\d@#$%^&+=_!]{8,}$/,
+    message: 'Senha deve ter: Ao menos 1 letra, 1 digito e 8 caracter de letras ou digitos.',
   },
   cpf: {
     regex: /^([0-9]{3}\.?[0-9]{3}\.?[0-9]{3}-?[0-9]{2})|([0-9]{11})$/,
@@ -40,6 +41,10 @@ const validacao = {
   numero: {
     regex: /^[1-9]\d*$/,
     message: 'Somente números são permitidos. Ex.: 123',
+  },
+  cnpj: {
+    regex: /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/,
+    message: 'Formato inválido. Ex.: 12.345.678/0001-90',
   },
   cidade: {
     regex: /^[a-zA-Záàâãéèêíïóôõöúçñ\s]+$/,

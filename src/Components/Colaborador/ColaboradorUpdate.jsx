@@ -28,7 +28,7 @@ const ColaboradorUpdate = () => {
     const buscar = async () => {
       try {
         const response = await colaboradorShow(loginParam)
-        // console.log(response)
+        // console.log(response.data)
         setColaborador(response.data)
         setChecked(response.data.is_ativo)
       } catch (err) {
