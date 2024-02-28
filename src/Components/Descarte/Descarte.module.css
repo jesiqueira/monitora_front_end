@@ -32,7 +32,7 @@ margin-inline: auto;
 
 .menu {
   display: grid;
-  grid-template-columns: 2fr 2fr 1fr;
+  grid-template-columns: 2fr 1fr;
   grid-template-areas: "titulo forms exportar";
   column-gap: 20px;
 }
